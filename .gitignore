@@ -33,5 +33,4 @@
 
 *.Debug
 *.vscode
-*.vs
-*.x64
+/Project1/Project1/x64

@@ -54,6 +54,7 @@ int main()
 			//Checkout
 			std::cout << "Checkout Here!\n";
 			order->ShowTotalCost();
+			order->GenerateReceipt();
 			bIsShopping = false;
 			break;
 		case 6:

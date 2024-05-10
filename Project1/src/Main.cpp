@@ -4,7 +4,7 @@
 
 int main()
 {
-	std::cout << "Hello Team!" << std::endl;
+	std::cout << "Hello me!" << std::endl;
 
 	bool bIsShopping = true;
 	

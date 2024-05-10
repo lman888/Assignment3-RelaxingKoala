@@ -32,3 +32,6 @@
 *.app
 
 *.Debug
+*.vscode
+*.vs
+*.x64

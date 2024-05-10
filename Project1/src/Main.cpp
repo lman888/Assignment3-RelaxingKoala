@@ -27,7 +27,6 @@ int main()
 	int Selection = 0;
 	while (bIsShopping)
 	{
-		
 		std::cin >> Selection;
 
 		switch (Selection)

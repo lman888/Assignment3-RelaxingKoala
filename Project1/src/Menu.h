@@ -9,7 +9,6 @@ public:
 	~Menu() = default;
 
 	//Returns a list of Menu Items
-
 	void ShowMenuItems() const;
 	
 	std::map<std::string, float> GetMenuItems() const;

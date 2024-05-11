@@ -9,9 +9,9 @@ public:
     Order();
     ~Order() = default;
     
-    void AddToOrder(const std::string& Item, float ItemCost);
+    void AddToOrder(const std::string& aItem, float aItemCost);
 
-    void RemoveFromOrder(const std::string& Item);
+    void RemoveFromOrder(const std::string& aItem);
 
     void ShowOrder() const;
 

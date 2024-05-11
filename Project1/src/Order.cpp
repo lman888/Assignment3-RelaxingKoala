@@ -6,13 +6,13 @@ Order::Order()
     TotalCost = 0.0f;
 }
 
-void Order::AddToOrder(const std::string& Item, float ItemCost)
+void Order::AddToOrder(const std::string& aItem, float aItemCost)
 {
-    OrderItems.insert({Item, ItemCost});
+    OrderItems.insert({aItem, aItemCost});
     TotalCost += ItemCost;
 }
 
-void Order::RemoveFromOrder(const std::string& Item)
+void Order::RemoveFromOrder(const std::string& aItem)
 {
     if (OrderItems.empty())
     {
@@ -22,7 +22,7 @@ void Order::RemoveFromOrder(const std::string& Item)
     
     for (std::pair<const std::string, float>& OrderItem : OrderItems)
     {
-        if (OrderItem.first == Item)
+        if (OrderItem.first == aItem)
         {
             TotalCost -= OrderItem.second;
             OrderItems.erase(OrderItem.first);

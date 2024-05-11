@@ -1,5 +1,7 @@
 /*WIP by Amelie*/
 #include "Reservation.h"
+
+#include <array>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -7,7 +9,7 @@ using namespace std;
 
 Reservation::Reservation()
 {
-    RetrieveReservationsFromDataBase();
+    //RetrieveReservationsFromDataBase();
 }
 
 void Reservation::RetrieveReservationsFromDataBase()
@@ -26,7 +28,7 @@ void Reservation::RetrieveReservationsFromDataBase()
 
             string NameOfReserver;
             int NumOfPeople;
-            double Time;
+            float Time;
             int Day;
             int Month;
             int Year;
@@ -53,9 +55,18 @@ void Reservation::RetrieveReservationsFromDataBase()
     }
 }
 
-void Reservation::AddReservation()
+void Reservation::AddReservation(std::string aName, float aTime)
 {
     //prompt to enter day month year time and numOfPeople to add into array
+
+    //Amelia - aTime (5, 6)
+    //Check for duplicates
+    
+    //Adds Reservation to a Map
+    reservation[aName] = aTime;
+
+
+    //
 }
 
 void Reservation::RemoveReservation()
@@ -72,4 +83,10 @@ void Reservation::ShowReservations() const
 void Reservation::UpdateReservationFile() 
 {
     //update .txt file of whatever reservation was added or removed
+}
+
+void Reservation::GetAvailableTimeSlots()
+{
+    //Loop through TimeSlots array
+    // cout
 }

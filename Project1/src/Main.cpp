@@ -13,20 +13,20 @@ int main()
 
 	//Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
-
-	/* Shopping Section */
-	std::cout << "Welcome to the Relaxing Koala!\n";
-	std::cout << "Please make a selection of what you would like to do!\n";
-	std::cout << "1 - Browse Menu\n";
-	std::cout << "2 - Add to Order\n";
-	std::cout << "3 - Remove from Order\n";
-	std::cout << "4 - View Order\n";
-	std::cout << "5 - Checkout\n";
-	std::cout << "6 - Exit\n";
 	
 	int Selection = 0;
 	while (bIsShopping)
 	{
+		/* Shopping Section */
+		std::cout << "Welcome to the Relaxing Koala!\n";
+		std::cout << "Please make a selection of what you would like to do!\n";
+		std::cout << "1 - Browse Menu\n";
+		std::cout << "2 - Add to Order\n";
+		std::cout << "3 - Remove from Order\n";
+		std::cout << "4 - View Order\n";
+		std::cout << "5 - Checkout\n";
+		std::cout << "6 - Exit\n";
+
 		std::cin >> Selection;
 
 		switch (Selection)
@@ -54,6 +54,7 @@ int main()
 			//Checkout
 			std::cout << "Checkout Here!\n";
 			order->ShowTotalCost();
+			order->GenerateReceipt();
 			bIsShopping = false;
 			break;
 		case 6:
@@ -64,6 +65,7 @@ int main()
 			std::cout << "Please make a valid selection of what you would like to do!\n";
 			break;
 		}
+		std::cout << "==================================================================\n";
 	}
 	/* End of Shopping Section */
 	

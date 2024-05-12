@@ -16,6 +16,8 @@ public:
     void ShowOrder() const;
 
     void ShowTotalCost() const;
+
+    void GenerateReceipt() const;
     
 private:
     std::map<std::string, float> OrderItems;

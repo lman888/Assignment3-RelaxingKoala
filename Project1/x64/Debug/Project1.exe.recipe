@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe</FullPath>
+=======
+      <FullPath>C:\Users\Ameli\OneDrive\Documents\GitHub\Iman888-Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe</FullPath>
+>>>>>>> 0ebb2fa90ffc162362dcaf34c9f110723104939d
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

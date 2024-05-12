@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Project1",
+    "\\Project1\\ReservationDatabase",
     "\\Project1\\src"
   ],
-  "SelectedNode": "\\Project1\\src\\textFile.txt",
+  "SelectedNode": "\\Project1\\src\\Reservation.cpp",
   "PreviewInSolutionExplorer": false
 }

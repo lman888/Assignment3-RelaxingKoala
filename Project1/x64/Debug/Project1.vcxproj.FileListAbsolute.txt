@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe
+=======
+C:\Users\Ameli\OneDrive\Documents\GitHub\Iman888-Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe
+>>>>>>> 0ebb2fa90ffc162362dcaf34c9f110723104939d

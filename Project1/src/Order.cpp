@@ -24,8 +24,8 @@ void Order::RemoveFromOrder(const std::string& Item)
     {
         if (OrderItem.first == Item)
         {
-            OrderItems.erase(OrderItem.first);
             TotalCost -= OrderItem.second;
+            OrderItems.erase(OrderItem.first);
             return;
         }
     }
@@ -48,4 +48,9 @@ void Order::ShowOrder() const
 void Order::ShowTotalCost() const
 {
     std::cout << "Total: " << TotalCost << "\n";
+}
+
+void Order::GenerateReceipt() const
+{
+    std::cout << "Receipt has been Generated!\n";
 }

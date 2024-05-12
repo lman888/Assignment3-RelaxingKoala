@@ -1,6 +1,7 @@
 ﻿#include "Order.h"
 #include <iostream>
 #include "Receipt.h"
+#include "Menu.h"
 #include <iomanip>
 
 Order::Order()
@@ -8,10 +9,24 @@ Order::Order()
     TotalCost = 0.0f;
 }
 
-void Order::AddToOrder(const std::string &aItem, float aItemCost)
+void Order::AddToOrder(const std::string &aItem, const Menu* aMenu)
 {
-    OrderItems.insert({aItem, aItemCost});
-    TotalCost += ItemCost;
+    if (!aMenu)
+    {
+        std::cout << "Menu is not valid\n";
+        return;
+    }
+
+    for (std::pair<const std::string, float>& MenuItem : aMenu->GetMenuItems())
+    {
+        if (CaseSensitiveStringCompare(aItem, MenuItem.first))
+        {
+            OrderItems.insert({aItem, MenuItem.second});
+            TotalCost += MenuItem.second;
+            std::cout << "Successfully added Item: " << aItem << " to Order!\n";
+            break;
+        }
+    }
 }
 
 void Order::RemoveFromOrder(const std::string &aItem)
@@ -21,13 +36,14 @@ void Order::RemoveFromOrder(const std::string &aItem)
         std::cout << "Your Cart is currently Empty!\n";
         return;
     }
-
+    
     for (std::pair<const std::string, float> &OrderItem : OrderItems)
     {
-        if (OrderItem.first == aItem)
+        if (CaseSensitiveStringCompare(aItem, OrderItem.first))
         {
             TotalCost -= OrderItem.second;
             OrderItems.erase(OrderItem.first);
+            std::cout << "Successfully removed Item: " << aItem << " from the order Order!\n";
             return;
         }
     }
@@ -59,14 +75,14 @@ void Order::GenerateReceipt() const
     std::cout << "Receipt has been Generated!\n";
     Receipt receipt(TotalCost, OrderItems, "dine-in");
     std::cout << "Order finished. Receipt generated." << std::endl;
-
+    
     std::cout << "Receipt data: " << std::endl;
     auto data = receipt.getData();
-
+    
     // Convert timestamp to a string representing local time
     std::time_t timestamp = std::get<0>(data);
     std::cout << "Timestamp: " << std::put_time(std::localtime(&timestamp), "%Y-%m-%d %H:%M:%S") << std::endl;
-
+    
     std::cout << "Items ordered: " << std::endl;
     for (const auto &item : std::get<1>(data))
     {
@@ -74,4 +90,22 @@ void Order::GenerateReceipt() const
     }
     std::cout << "Delivery type: " << std::get<2>(data) << std::endl;
     std::cout << "Total amount: " << std::get<3>(data) << std::endl;
+}
+
+bool Order::CaseSensitiveStringCompare(const std::string& aItem, const std::string& aMenuItem)
+{
+    if (aItem.length() != aMenuItem.length())
+    {
+        std::cout << "Please enter a valid Menu Item\n";
+        return false;
+    }
+
+    for (size_t i = 0; i < aItem.length(); i++)
+    {
+        if (std::tolower(aItem[i]) != std::tolower(aMenuItem[i]))
+        {
+            return false;
+        }
+    }
+    return true;
 }

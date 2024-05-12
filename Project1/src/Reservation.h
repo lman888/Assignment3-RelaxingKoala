@@ -29,5 +29,5 @@ private:
 
     std::map<std::string, float> reservation;
     
-    array<int, 5> TimeSlots[] = {6.0f, 6.3f, 7.0f, 7.3f, 8.0f};
+    //array<int, 5> TimeSlots[] = {6.0f, 6.3f, 7.0f, 7.3f, 8.0f};
 };

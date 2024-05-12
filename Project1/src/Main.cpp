@@ -2,6 +2,16 @@
 #include "Menu.h"
 #include "Order.h"
 
+void ShowSelections()
+{
+	std::cout << "1 - Browse Menu\n";
+	std::cout << "2 - Add to Order\n";
+	std::cout << "3 - Remove from Order\n";
+	std::cout << "4 - View Order\n";
+	std::cout << "5 - Checkout\n";
+	std::cout << "6 - Exit\n";
+}
+
 int main()
 {
 	std::cout << "Hello me!" << std::endl;
@@ -17,19 +27,23 @@ int main()
 	/* Shopping Section */
 	std::cout << "Welcome to the Relaxing Koala!\n";
 	std::cout << "Please make a selection of what you would like to do!\n";
-	std::cout << "1 - Browse Menu\n";
-	std::cout << "2 - Add to Order\n";
-	std::cout << "3 - Remove from Order\n";
-	std::cout << "4 - View Order\n";
-	std::cout << "5 - Checkout\n";
-	std::cout << "6 - Exit\n";
+	ShowSelections();
 	
 	int Selection = 0;
+	std::string SelectedItem;
 	while (bIsShopping)
 	{
-
-		std::cin >> Selection;
-
+		std::string input;
+		std::getline(std::cin, input);
+		try
+		{
+			Selection = std::stoi(input);
+		}
+		catch (const std::exception& e)
+		{
+			continue;
+		}
+		
 		switch (Selection)
 		{
 		case 1:
@@ -38,13 +52,17 @@ int main()
 			break;
 		case 2:
 			//Add to Customers Order
-			order->AddToOrder("Latte", 3.0f);
-			order->AddToOrder("Sandwich", 5.0f);
-			order->AddToOrder("Long-Black", 3.0f);
+			std::cout << "Please select an Order Item\n";
+			menu->ShowMenuItems();
+			std::cin >> input;
+			order->AddToOrder(input, menu);
 			break;
 		case 3:
 			//Remove from Customers Order
-			order->RemoveFromOrder("Latte");
+			std::cout << "Please select what item you wish to remove\n";
+			order->ShowOrder();
+			std::cin >> input;
+			order->RemoveFromOrder(input);
 			break;
 		case 4:
 			//Shows Customers Order

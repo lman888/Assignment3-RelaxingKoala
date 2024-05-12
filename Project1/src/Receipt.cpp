@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "Receipt.h"
 
-Receipt::Receipt(float totalAmount, const std::map<std::string, float> &itemsOrdered, const std::string &deliveryType) : totalAmount(totalAmount), itemsOrdered(itemsOrdered), deliveryType(deliveryType)
+Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &itemsOrdered, const std::string &deliveryType) : totalAmount(totalAmount), itemsOrdered(itemsOrdered), deliveryType(deliveryType)
 {
     std::time_t currentTime = std::time(nullptr);
     timestamp = currentTime;

@@ -14,7 +14,7 @@ Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &ite
     timestamp = currentTime;
 }
 
-std::tuple<std::time_t, std::map<std::string, float>, std::string, float> Receipt::getData() const
+std::tuple<std::time_t, std::multimap<std::string, float>, std::string, float> Receipt::getData() const
 {
     return std::make_tuple(timestamp, itemsOrdered, deliveryType, totalAmount);
 }

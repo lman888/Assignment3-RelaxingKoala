@@ -4,20 +4,21 @@
 #include "Menu.h"
 #include <iomanip>
 
-Order::Order()
+Order::Order(Menu* aMenu)
 {
+    MenuItems = aMenu;
     TotalCost = 0.0f;
 }
 
-void Order::AddToOrder(const std::string &aItem, const Menu* aMenu)
+void Order::AddToOrder(const std::string &aItem)
 {
-    if (!aMenu)
+    if (!MenuItems)
     {
         std::cout << "Menu is not valid\n";
         return;
     }
 
-    for (std::pair<const std::string, float>& MenuItem : aMenu->GetMenuItems())
+    for (std::pair<const std::string, float>& MenuItem : MenuItems->GetMenuItems())
     {
         if (CaseSensitiveStringCompare(aItem, MenuItem.first))
         {
@@ -81,7 +82,7 @@ void Order::GenerateReceipt() const
     
     // Convert timestamp to a string representing local time
     std::time_t timestamp = std::get<0>(data);
-    std::cout << "Timestamp: " << std::put_time(std::localtime(&timestamp), "%Y-%m-%d %H:%M:%S") << std::endl;
+    //std::cout << "Timestamp: " << std::put_time(std::localtime(&timestamp), "%Y-%m-%d %H:%M:%S") << std::endl;
     
     std::cout << "Items ordered: " << std::endl;
     for (const auto &item : std::get<1>(data))

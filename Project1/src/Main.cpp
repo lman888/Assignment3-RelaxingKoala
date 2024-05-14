@@ -19,7 +19,7 @@ int main()
 	bool bIsShopping = true;
 	
 	Menu* menu = new Menu();
-	Order* order = new Order();
+	Order* order = new Order(menu);
 
 	//Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
@@ -55,7 +55,7 @@ int main()
 			std::cout << "Please select an Order Item\n";
 			menu->ShowMenuItems();
 			std::cin >> input;
-			order->AddToOrder(input, menu);
+			order->AddToOrder(input);
 			break;
 		case 3:
 			//Remove from Customers Order

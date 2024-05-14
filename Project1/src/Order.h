@@ -9,10 +9,10 @@ class Order
 {
 public:
 
-    Order();
+    Order(Menu* aMenu);
     ~Order() = default;
     
-    void AddToOrder(const std::string& aItem, const Menu* aMenu);
+    void AddToOrder(const std::string& aItem);
 
     void RemoveFromOrder(const std::string& aItem);
 
@@ -29,4 +29,6 @@ private:
     std::multimap<std::string, float> OrderItems;
 
     float TotalCost;
+
+    Menu* MenuItems;
 };

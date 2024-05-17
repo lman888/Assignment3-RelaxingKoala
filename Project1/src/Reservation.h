@@ -11,7 +11,8 @@ public:
     ~Reservation() = default;
 
     //Writes created reservation to array - First
-    void AddReservation(std::string aName, float aTime);
+    //void AddReservation(std::string aName, float aTime);
+    void AddReservation();
 
     //Customer arrives, removes reservation from array
     void RemoveReservation();
@@ -19,7 +20,7 @@ public:
     //Returns a list of Reservations
     void ShowReservations() const;
 
-    //updates reservation file after adding or removal of reservation
+    //Updates reservation file after adding or removal of reservation
     void UpdateReservationFile();
 
     void GetAvailableTimeSlots();

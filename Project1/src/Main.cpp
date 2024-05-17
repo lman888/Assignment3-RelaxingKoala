@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Menu.h"
 #include "Order.h"
+#include "Reservation.h"
 
 void ShowSelections()
 {
@@ -9,7 +10,8 @@ void ShowSelections()
 	std::cout << "3 - Remove from Order\n";
 	std::cout << "4 - View Order\n";
 	std::cout << "5 - Checkout\n";
-	std::cout << "6 - Exit\n";
+	std::cout << "6 - Make a Reservation\n";
+	std::cout << "7 - Exit\n";
 }
 
 int main()
@@ -20,6 +22,7 @@ int main()
 	
 	Menu* menu = new Menu();
 	Order* order = new Order(menu);
+	Reservation* reservation = new Reservation();
 
 	//Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
@@ -59,7 +62,7 @@ int main()
 			break;
 		case 3:
 			//Remove from Customers Order
-			std::cout << "Please select what item you wish to remove\n";
+			std::cout << "Please select what item you wish to remove\n";//how do we remove an item? by name or number? -Amelie
 			order->ShowOrder();
 			std::cin >> input;
 			order->RemoveFromOrder(input);
@@ -77,6 +80,15 @@ int main()
 			bIsShopping = false;
 			break;
 		case 6:
+			//Make Reservation (WIP by Amelie)
+			std::cout << "Reserve a table here! (Main.cpp)\n";
+			reservation->AddReservation();
+			reservation->GetAvailableTimeSlots();
+			reservation->RemoveReservation();
+			reservation->ShowReservations();
+			reservation->UpdateReservationFile();
+			break;
+		case 7:
 			//Exit Shop and close application
 			bIsShopping = false;
 			break;

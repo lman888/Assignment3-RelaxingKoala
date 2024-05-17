@@ -1,6 +1,18 @@
 #include <iostream>
 #include "Menu.h"
 #include "Order.h"
+#include "Reservation.h"
+
+void ShowSelections()
+{
+	std::cout << "1 - Browse Menu\n";
+	std::cout << "2 - Add to Order\n";
+	std::cout << "3 - Remove from Order\n";
+	std::cout << "4 - View Order\n";
+	std::cout << "5 - Checkout\n";
+	std::cout << "6 - Make a Reservation\n";
+	std::cout << "7 - Exit\n";
+}
 
 int main()
 {
@@ -9,26 +21,32 @@ int main()
 	bool bIsShopping = true;
 	
 	Menu* menu = new Menu();
-	Order* order = new Order();
+	Order* order = new Order(menu);
+	Reservation* reservation = new Reservation();
 
 	//Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
 	
+	/* Shopping Section */
+	std::cout << "Welcome to the Relaxing Koala!\n";
+	std::cout << "Please make a selection of what you would like to do!\n";
+	ShowSelections();
+	
 	int Selection = 0;
+	std::string SelectedItem;
 	while (bIsShopping)
 	{
-		/* Shopping Section */
-		std::cout << "Welcome to the Relaxing Koala!\n";
-		std::cout << "Please make a selection of what you would like to do!\n";
-		std::cout << "1 - Browse Menu\n";
-		std::cout << "2 - Add to Order\n";
-		std::cout << "3 - Remove from Order\n";
-		std::cout << "4 - View Order\n";
-		std::cout << "5 - Checkout\n";
-		std::cout << "6 - Exit\n";
-
-		std::cin >> Selection;
-
+		std::string input;
+		std::getline(std::cin, input);
+		try
+		{
+			Selection = std::stoi(input);
+		}
+		catch (const std::exception& e)
+		{
+			continue;
+		}
+		
 		switch (Selection)
 		{
 		case 1:
@@ -37,13 +55,17 @@ int main()
 			break;
 		case 2:
 			//Add to Customers Order
-			order->AddToOrder("Latte", 3.0f);
-			order->AddToOrder("Sandwich", 5.0f);
-			order->AddToOrder("Long-Black", 3.0f);
+			std::cout << "Please select an Order Item\n";
+			menu->ShowMenuItems();
+			std::cin >> input;
+			order->AddToOrder(input);
 			break;
 		case 3:
 			//Remove from Customers Order
-			order->RemoveFromOrder("Latte");
+			std::cout << "Please select what item you wish to remove\n";//how do we remove an item? by name or number? -Amelie
+			order->ShowOrder();
+			std::cin >> input;
+			order->RemoveFromOrder(input);
 			break;
 		case 4:
 			//Shows Customers Order
@@ -58,6 +80,15 @@ int main()
 			bIsShopping = false;
 			break;
 		case 6:
+			//Make Reservation (WIP by Amelie)
+			std::cout << "Reserve a table here! (Main.cpp)\n";
+			reservation->AddReservation();
+			reservation->GetAvailableTimeSlots();
+			reservation->RemoveReservation();
+			reservation->ShowReservations();
+			reservation->UpdateReservationFile();
+			break;
+		case 7:
 			//Exit Shop and close application
 			bIsShopping = false;
 			break;

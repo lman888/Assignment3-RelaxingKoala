@@ -10,7 +10,8 @@ public:
     Reservation();
     ~Reservation() = default;
 
-    //Writes created reservation to array
+    //Writes created reservation to array - First
+    //void AddReservation(std::string aName, float aTime);
     void AddReservation();
 
     //Customer arrives, removes reservation from array
@@ -19,9 +20,15 @@ public:
     //Returns a list of Reservations
     void ShowReservations() const;
 
-    //updates reservation file after adding or removal of reservation
+    //Updates reservation file after adding or removal of reservation
     void UpdateReservationFile();
 
+    void GetAvailableTimeSlots();
+    
 private:
     void RetrieveReservationsFromDataBase();
+
+    std::map<std::string, float> reservation;
+    
+    //array<int, 5> TimeSlots[] = {6.0f, 6.3f, 7.0f, 7.3f, 8.0f};
 };

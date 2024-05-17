@@ -2,16 +2,19 @@
 #include <map>
 #include <string>
 
+//Forward Declaration
+class Menu;
+
 class Order
 {
 public:
 
-    Order();
+    Order(Menu* aMenu);
     ~Order() = default;
     
-    void AddToOrder(const std::string& Item, float ItemCost);
+    void AddToOrder(const std::string& aItem);
 
-    void RemoveFromOrder(const std::string& Item);
+    void RemoveFromOrder(const std::string& aItem);
 
     void ShowOrder() const;
 
@@ -20,7 +23,12 @@ public:
     void GenerateReceipt() const;
     
 private:
-    std::map<std::string, float> OrderItems;
+
+    bool CaseSensitiveStringCompare(const std::string& aItem, const std::string& aMenuItem);
+    
+    std::multimap<std::string, float> OrderItems;
 
     float TotalCost;
+
+    Menu* MenuItems;
 };

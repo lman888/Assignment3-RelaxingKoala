@@ -2,6 +2,8 @@
 #pragma once
 #include <map>
 #include <string>
+#include <vector>
+#include <array>
 using namespace std;
 
 class Reservation
@@ -10,25 +12,49 @@ public:
     Reservation();
     ~Reservation() = default;
 
-    //Writes created reservation to array - First
-    //void AddReservation(std::string aName, float aTime);
+    string NameOfReserver;
+    int NumOfPeople;
+    string Time;
+    int Day;
+    int Month;
+    int Year;
+
+    Reservation(int aDay, int aMonth, int aYear, string aTime, string aNameOfReserver, int aNumOfPeople)
+    {
+        Day = aDay;
+        Month = aMonth;
+        Year = aYear;
+        Time = aTime;
+        NameOfReserver = aNameOfReserver;
+        NumOfPeople = aNumOfPeople;
+    }
+
+    //Determines reservable times set by owner 
+    void GetAvailableTimeSlots();
+
+    //Updates reservation .txt file 
+    void UpdateReservationFile();
+
+    //Writes created reservation to array 
     void AddReservation();
 
     //Customer arrives, removes reservation from array
     void RemoveReservation();
 
     //Returns a list of Reservations
-    void ShowReservations() const;
+    void ShowReservations();
 
-    //Updates reservation file after adding or removal of reservation
-    void UpdateReservationFile();
+    
 
-    void GetAvailableTimeSlots();
+    
     
 private:
     void RetrieveReservationsFromDataBase();
 
-    std::map<std::string, float> reservation;
-    
-    //array<int, 5> TimeSlots[] = {6.0f, 6.3f, 7.0f, 7.3f, 8.0f};
+
+    std::map<std::string, float> ReservationTimes;
+
+    vector<string> AvailableTimesVector;
+    vector<vector<string>> AvailableTimesInDaysVector;
+    vector<Reservation> ReservationVector;
 };

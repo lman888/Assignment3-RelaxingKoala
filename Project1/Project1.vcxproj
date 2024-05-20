@@ -133,6 +133,7 @@
     <ClCompile Include="src\Payment.cpp" />
     <ClCompile Include="src\Receipt.cpp" />
     <ClCompile Include="src\Reservation.cpp" />
+    <ClCompile Include="src\Statistics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Menu.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="src\Payment.h" />
     <ClInclude Include="src\Receipt.h" />
     <ClInclude Include="src\Reservation.h" />
+    <ClInclude Include="src\Statistics.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

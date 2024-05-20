@@ -5,17 +5,28 @@
 //  Created by Stefanus Wilfrid Admaja on 18/5/2024.
 //
 
-#ifndef Waiter_h
-#define Waiter_h
+#ifndef WAITER_H
+#define WAITER_H
 
 #include "Staff.h"
+#include <string>
+#include <map>
 
-class Waiter : public Staff {
-public:
-    void performTask() override; // Overridden performTask method
-    void updateMenuAvailability(); // Additional method specific to Waiter
+enum class MenuAction
+{
+    Add,
+    Delete
 };
 
+class Waiter : public Staff
+{
+public:
+    Waiter();
+    virtual ~Waiter();
 
+    void performTask() override;
+    void updateMenuAvailability(MenuAction action, const std::map<std::string, float> &items);
+    void promptUpdateMenu();
+};
 
-#endif /* Waiter_h */
+#endif /* WAITER_H */

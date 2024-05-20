@@ -4,7 +4,7 @@
 #include "Menu.h"
 #include <iomanip>
 
-Order::Order(Menu* aMenu)
+Order::Order(Menu *aMenu)
 {
     MenuItems = aMenu;
     TotalCost = 0.0f;
@@ -18,7 +18,7 @@ void Order::AddToOrder(const std::string &aItem)
         return;
     }
 
-    for (std::pair<const std::string, float>& MenuItem : MenuItems->GetMenuItems())
+    for (std::pair<const std::string, float> &MenuItem : MenuItems->GetMenuItems())
     {
         if (CaseSensitiveStringCompare(aItem, MenuItem.first))
         {
@@ -37,7 +37,7 @@ void Order::RemoveFromOrder(const std::string &aItem)
         std::cout << "Your Cart is currently Empty!\n";
         return;
     }
-    
+
     for (std::pair<const std::string, float> &OrderItem : OrderItems)
     {
         if (CaseSensitiveStringCompare(aItem, OrderItem.first))
@@ -71,19 +71,27 @@ void Order::ShowTotalCost() const
 
 void Order::GenerateReceipt() const
 {
-    // TODO : extract the delivery type : Dine-in, Delivery or Takeaway
-    // I print to test it.
     std::cout << "Receipt has been Generated!\n";
     Receipt receipt(TotalCost, OrderItems, "dine-in");
     std::cout << "Order finished. Receipt generated." << std::endl;
-    
+
     std::cout << "Receipt data: " << std::endl;
     auto data = receipt.getData();
-    
-    // Convert timestamp to a string representing local time
+
+    // Retrieve the timestamp from the receipt data
     std::time_t timestamp = std::get<0>(data);
-    //std::cout << "Timestamp: " << std::put_time(std::localtime(&timestamp), "%Y-%m-%d %H:%M:%S") << std::endl;
-    
+
+    // Declare a tm struct to hold the local time
+    struct tm localTime;
+
+    // Convert the time_t timestamp to local time using localtime_r
+    localtime_r(&timestamp, &localTime); // Correct usage of localtime_r
+
+    // Format and output the timestamp using std::put_time
+    // std::put_time takes a pointer to a tm struct and a format string
+    std::cout << "Timestamp: ";
+    std::cout << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S") << std::endl;
+
     std::cout << "Items ordered: " << std::endl;
     for (const auto &item : std::get<1>(data))
     {
@@ -93,7 +101,7 @@ void Order::GenerateReceipt() const
     std::cout << "Total amount: " << std::get<3>(data) << std::endl;
 }
 
-bool Order::CaseSensitiveStringCompare(const std::string& aItem, const std::string& aMenuItem)
+bool Order::CaseSensitiveStringCompare(const std::string &aItem, const std::string &aMenuItem)
 {
     if (aItem.length() != aMenuItem.length())
     {

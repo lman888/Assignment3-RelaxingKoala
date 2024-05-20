@@ -24,6 +24,8 @@ int main()
 	Order* order = new Order(menu);
 	Reservation* reservation = new Reservation();
 
+	int Selection2 = 0;//maybe remove later, cuz its only for option 6 -Amelie
+
 	//Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
 	
@@ -62,7 +64,7 @@ int main()
 			break;
 		case 3:
 			//Remove from Customers Order
-			std::cout << "Please select what item you wish to remove\n";//how do we remove an item? by name or number? -Amelie
+			std::cout << "Please select what item you wish to remove\n";
 			order->ShowOrder();
 			std::cin >> input;
 			order->RemoveFromOrder(input);
@@ -80,13 +82,28 @@ int main()
 			bIsShopping = false;
 			break;
 		case 6:
-			//Make Reservation (WIP by Amelie)
+			//Make Reservation (WIP by Amelie) 
+			//do i make the reservation menu here?
+
 			std::cout << "Reserve a table here! (Main.cpp)\n";
-			reservation->AddReservation();
-			reservation->GetAvailableTimeSlots();
-			reservation->RemoveReservation();
-			reservation->ShowReservations();
-			reservation->UpdateReservationFile();
+			std::cout << "1 - Add a reservation\n";
+			std::cout << "2 - Remove a reservation\n";
+			std::cout << "Reserve a table here! (Main.cpp)\n";
+			
+			std::cin >> Selection2;
+			switch (Selection2) {
+			case 1:
+				reservation->AddReservation();//COMPLETE
+				break;
+			case 2:
+				reservation->RemoveReservation();//COMPLETE
+				break;
+			default:
+				std::cout << "Please make a valid selection of what you would like to do!\n";
+				break;
+			}
+			//no sanitising done yet, might completely remove this menu later
+
 			break;
 		case 7:
 			//Exit Shop and close application

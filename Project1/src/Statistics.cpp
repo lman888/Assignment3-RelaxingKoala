@@ -45,7 +45,7 @@ void Statistics::WriteRecord()
 		
 		for (auto&Receipt:record)
 		{
-			auto[itemsOrdered, deliveryType, totalAmount] = Receipt.getData();
+			//auto[itemsOrdered, deliveryType, totalAmount] = Receipt.getData();
 		}
 	}
 }

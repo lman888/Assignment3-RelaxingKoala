@@ -21,7 +21,7 @@ public:
 
 	void RetrieveRecord();
 
-	//string DisplayStatistics();
+	string DisplayStatistics();
 
 	//multimap<string, float> getItems() const;
 	//string getDeliveryType() const;

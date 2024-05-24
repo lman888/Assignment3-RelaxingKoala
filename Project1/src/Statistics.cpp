@@ -10,16 +10,14 @@ using namespace std;
 
 Statistics::Statistics()
 {
-	
+	//WriteRecord();
 }
 
 void Statistics::RetrieveRecord()
 {
 	ifstream StatisticsFile("StatisticsDatabase/PurchaseRecords.txt");
 
-	multimap<string, float> itemsOrdered;
-	string deliveryType;
-	float totalAmount;
+	
 
 	if (StatisticsFile.is_open())
 	{
@@ -38,16 +36,42 @@ void Statistics::WriteRecord()
 	ofstream StatisticsFile("StatisticsDatabase/PurchaseRecords.txt");
 	multimap< string, float> items = { {"Apple", 1.0}, {"Banana", 0.5} };
 	time_t now = time(nullptr);
-	
+	string deliveryType = "dine-in";
+	float total = 14;
 
+	//add a dummy record to the vector
+	record.push_back(Receipt(total,items,deliveryType));
+
+	
 	if (StatisticsFile.is_open())
 	{
-		
-		for (auto&Receipt:record)
+		//iterate vector and get values to a tuple
+		for (auto& receipt:record)
 		{
-			//auto[itemsOrdered, deliveryType, totalAmount] = Receipt.getData();
+			auto data = receipt.getData();
+			multimap< string, float> itemsPurchased;
+			time_t timeOfPurchase;
+			string deliveryType;
+			float total;
+
+			//unpack the tuple
+			tie(timeOfPurchase,itemsPurchased,deliveryType,total) = data;
+
+			//write data to file
+			StatisticsFile << timeOfPurchase << ","<< deliveryType << "," << total << "\n";
 		}
+		StatisticsFile.close();
 	}
+	else
+	{
+		cout << "Error to opening file";
+		return;
+	}
+}
+
+string Statistics::DisplayStatistics()
+{
+	
 }
 
 

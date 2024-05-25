@@ -45,8 +45,6 @@ public:
     void ShowReservations();
 
     
-
-    
     
 private:
     void RetrieveReservationsFromDataBase();

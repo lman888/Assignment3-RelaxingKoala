@@ -1,4 +1,7 @@
+#include <chrono>
 #include <iostream>
+#include <ctime>
+
 #include "Menu.h"
 #include "Order.h"
 #include "Reservation.h"
@@ -124,6 +127,25 @@ int main()
 		std::cout << "==================================================================\n";
 	}
 	/* End of Shopping Section */
+
+	// Get the current time as a time_point
+	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+
+	// Convert the time_point to a time_t, which represents the time in seconds since the epoch
+	std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+	// Convert the time_t to a tm structure for local time in a thread-safe manner
+	std::tm localTime;
+	localtime_s(&localTime, &currentTime);
+
+	// Create a buffer to store the formatted time string
+	char timeString[26]; // asctime_s requires a buffer of at least 26 characters
+
+	// Convert the tm structure to a human-readable string in a thread-safe manner
+	asctime_s(timeString, sizeof(timeString), &localTime);
+
+	// Print the time string
+	std::cout << "Current time: " << timeString;
 	
 	return 0;
 }

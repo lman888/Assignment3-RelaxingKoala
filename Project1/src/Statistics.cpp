@@ -71,7 +71,5 @@ void Statistics::WriteRecord()
 
 string Statistics::DisplayStatistics()
 {
-	
+	return string();
 }
-
-

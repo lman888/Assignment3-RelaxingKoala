@@ -5,8 +5,11 @@
 //  Created by Stefanus Wilfrid Admaja on 11/5/2024.
 //
 
-#include <stdio.h>
 #include "Receipt.h"
+
+#include <iomanip>
+#include <stdio.h>
+#include <iostream>
 
 Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &itemsOrdered, const std::string &deliveryType) : totalAmount(totalAmount), itemsOrdered(itemsOrdered), deliveryType(deliveryType)
 {

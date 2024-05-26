@@ -9,11 +9,12 @@
 #define KitchenStaff_h
 
 #include "Staff.h"
+#include "Order.h"
 
-class KitchenStaff : public Staff {
+class KitchenStaff : public Staff
+{
 public:
-    void performTask() override;  // Overridden performTask method
+    void performTask(Order &order) override; // Overridden performTask method
 };
-
 
 #endif /* KitchenStaff_h */

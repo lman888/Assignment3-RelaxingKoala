@@ -24,7 +24,7 @@ public:
     Waiter();
     virtual ~Waiter();
 
-    void performTask() override;
+    void performTask(Order &order) override;
     void updateMenuAvailability(MenuAction action, const std::map<std::string, float> &items);
     void promptUpdateMenu();
 };

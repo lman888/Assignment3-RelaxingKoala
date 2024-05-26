@@ -10,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include "Order.h"
 
 Waiter::Waiter()
 {
@@ -21,7 +22,7 @@ Waiter::~Waiter()
 {
 }
 
-void Waiter::performTask()
+void Waiter::performTask(Order &order)
 {
     std::cout << "Serving customers at the restaurant." << std::endl;
 }

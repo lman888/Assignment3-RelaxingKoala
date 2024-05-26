@@ -1,26 +1,2 @@
-﻿  Order.cpp
-C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\src\Order.cpp(88,5): error C3861: 'localtime_r': identifier not found
-  Statistics.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\utility(172,54): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data
-          with
-          [
-              _Ty=double
-          ]
-          and
-          [
-              _Ty2=float
-          ]
-C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\src\Statistics.cpp(37,69): message : see reference to function template instantiation 'std::pair<const std::string,float>::pair<const char(&)[6],double,0>(_Other1,_Other2 &&) noexcept(false)' being compiled
-          with
-          [
-              _Other1=const char (&)[6],
-              _Other2=double
-          ]
-C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\src\Statistics.cpp(37,27): message : see reference to function template instantiation 'std::pair<const std::string,float>::pair<const char(&)[6],double,0>(_Other1,_Other2 &&) noexcept(false)' being compiled
-          with
-          [
-              _Other1=const char (&)[6],
-              _Other2=double
-          ]
-  Generating Code...
-C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\src\Statistics.cpp(72): error C4716: 'Statistics::DisplayStatistics': must return a value
+﻿  Project1.vcxproj -> C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(5428,5): error MSB3541: Files has invalid value "<<<<<<< HEAD". Illegal characters in path.

@@ -58,20 +58,20 @@ void Statistics::WriteRecord()
 			tie(timeOfPurchase,itemsPurchased,deliveryType,total) = data;
 
 			//write data to file
-			StatisticsFile << timeOfPurchase << ","<< deliveryType << "," << total << "\n";
+			StatisticsFile << itemsPurchased <<"," << timeOfPurchase << "," << deliveryType << "," << total << "\n";
 		}
 		StatisticsFile.close();
 	}
 	else
 	{
-		cout << "Error to opening file";
+		cout << "Error to opening file";    
 		return;
 	}
 }
 
-string Statistics::DisplayStatistics()
+/*string Statistics::DisplayStatistics()
 {
 	
-}
+}*/
 
 

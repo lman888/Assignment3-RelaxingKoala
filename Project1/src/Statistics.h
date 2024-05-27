@@ -9,26 +9,24 @@ using namespace std;
 class Statistics
 {
 public:
-	Statistics();
-	~Statistics() = default;
+	static Statistics& GetInstance()
+	{
+		static Statistics Instance;
+		return Instance;
+	}
 
 	multimap<string, float> itemsOrdered;
 	string deliveryType;
 	float totalAmount;
 
 
-	void WriteRecord();
+	void WriteRecord(Receipt* aReceipt);
 
 	void RetrieveRecord();
 
-	string DisplayStatistics();
-
-	//multimap<string, float> getItems() const;
-	//string getDeliveryType() const;
-	//float getTotal() const;
+	void DisplayStatistics();
 
 private:
 	
 	vector<Receipt> record;
 };
-

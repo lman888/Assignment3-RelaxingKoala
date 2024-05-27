@@ -1,5 +1,4 @@
-1716636833,dine-in,14
-1716636833,dine-in,14
-1716636834,dine-in,14
-1716636834,dine-in,14
-1716636835,dine-in,14
+Item: Latte: Cost: 3
+Item: Long-Black: Cost: 3.5
+Time: Mon May 27 14:53:55 2024
+Order Type: dine-in

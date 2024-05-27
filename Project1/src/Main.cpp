@@ -1,4 +1,8 @@
 #include <iostream>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b30c640eee30351a3f9c06f47362fc8ca1f109b7
 #include "Menu.h"
 #include "Order.h"
 #include "Reservation.h"
@@ -25,7 +29,7 @@ int main()
 	Menu* menu = new Menu();
 	Order* order = new Order(menu);
 	Reservation* reservation = new Reservation();
-	Statistics* statistics = new Statistics();
+	Statistics& statistics = Statistics::GetInstance();
 
 	int Selection2 = 0;//maybe remove later, cuz its only for option 6 -Amelie
 
@@ -82,7 +86,6 @@ int main()
 			std::cout << "Checkout Here!\n";
 			order->ShowTotalCost();
 			order->GenerateReceipt();
-			statistics->WriteRecord();  //write the rcord after recipt is created
 			bIsShopping = false;
 			break;
 		case 6:
@@ -114,8 +117,8 @@ int main()
 			bIsShopping = false;
 			break;
 		case 8:
-			//Write order records to database
-			statistics->WriteRecord();
+			//Write order records to database8
+			statistics.DisplayStatistics();
 			break;
 		default:
 			std::cout << "Please make a valid selection of what you would like to do!\n";

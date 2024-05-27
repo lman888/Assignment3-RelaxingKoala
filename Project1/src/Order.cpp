@@ -71,9 +71,8 @@ void Order::ShowTotalCost() const
 
 void Order::GenerateReceipt() const
 {
-    std::cout << "Receipt has been Generated!\n";
-    Receipt receipt(TotalCost, OrderItems, "dine-in");
     std::cout << "Order finished. Receipt generated." << std::endl;
+<<<<<<< HEAD
 
     std::cout << "Receipt data: " << std::endl;
     auto data = receipt.getData();
@@ -99,6 +98,11 @@ void Order::GenerateReceipt() const
     }
     std::cout << "Delivery type: " << std::get<2>(data) << std::endl;
     std::cout << "Total amount: " << std::get<3>(data) << std::endl;
+=======
+    
+    Receipt receipt(TotalCost, OrderItems, "dine-in");
+    std::cout << "Receipt has been Generated!\n";
+>>>>>>> b30c640eee30351a3f9c06f47362fc8ca1f109b7
 }
 
 bool Order::CaseSensitiveStringCompare(const std::string &aItem, const std::string &aMenuItem)

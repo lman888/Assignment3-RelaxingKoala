@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-1716637306,dine-in,14
-1716637564,dine-in,14
-=======
 Item: Latte: Cost: 3
 Item: Long-Black: Cost: 3.5
 Time: Mon May 27 14:53:55 2024
 Order Type: dine-in
->>>>>>> b30c640eee30351a3f9c06f47362fc8ca1f109b7

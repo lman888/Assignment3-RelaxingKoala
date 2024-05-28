@@ -84,12 +84,12 @@ void Order::GenerateReceipt() const
     struct tm localTime;
 
     // Convert the time_t timestamp to local time using localtime_r
-    //localtime_r(&timestamp, &localTime); // Correct usage of localtime_r
+    // localtime_r(&timestamp, &localTime); // Correct usage of localtime_r
 
     // Format and output the timestamp using std::put_time
     // std::put_time takes a pointer to a tm struct and a format string
-    //std::cout << "Timestamp: ";
-    //std::cout << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S") << std::endl;
+    // std::cout << "Timestamp: ";
+    // std::cout << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S") << std::endl;
 
     std::cout << "Items ordered: " << std::endl;
     for (const auto &item : std::get<1>(data))
@@ -99,7 +99,7 @@ void Order::GenerateReceipt() const
     std::cout << "Delivery type: " << std::get<2>(data) << std::endl;
     std::cout << "Total amount: " << std::get<3>(data) << std::endl;
 =======
-    
+
     Receipt receipt(TotalCost, OrderItems, "dine-in");
     std::cout << "Receipt has been Generated!\n";
 >>>>>>> b30c640eee30351a3f9c06f47362fc8ca1f109b7

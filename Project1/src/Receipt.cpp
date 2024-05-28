@@ -5,16 +5,13 @@
 //  Created by Stefanus Wilfrid Admaja on 11/5/2024.
 //
 
-<<<<<<< HEAD
 #include <stdio.h>
 #include "Receipt.h"
-=======
 #include "Receipt.h"
 
 #include <chrono>
 #include <iomanip>
 #include <iostream>
->>>>>>> b30c640eee30351a3f9c06f47362fc8ca1f109b7
 
 #include "Statistics.h"
 
@@ -49,19 +46,19 @@ Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &ite
 
     // Convert the tm structure to a human-readable string in a thread-safe manner
     asctime_s(timeString, sizeof(timeString), &localTime);
-    
+
     timestamp = timeString;
 
-    Statistics& statistics = Statistics::GetInstance();
+    Statistics &statistics = Statistics::GetInstance();
 
     statistics.WriteRecord(this);
-    
+
     DisplayReceiptData();
 }
 
-std::unique_ptr<std::tuple<char*, std::multimap<std::string, float>, std::string, float>> Receipt::getData()
+std::unique_ptr<std::tuple<char *, std::multimap<std::string, float>, std::string, float>> Receipt::getData()
 {
-    return std::make_unique<std::tuple<char*, std::multimap<std::string, float>, std::string, float>>(timestamp, itemsOrdered, deliveryType, totalAmount);
+    return std::make_unique<std::tuple<char *, std::multimap<std::string, float>, std::string, float>>(timestamp, itemsOrdered, deliveryType, totalAmount);
 }
 
 // calling Receipt class example

@@ -5,6 +5,7 @@
 #include "Order.h"
 #include "Reservation.h"
 #include "Statistics.h"
+#include "xWaiter.h"
 
 void ShowSelections()
 {
@@ -26,8 +27,15 @@ int main()
 	
 	Menu* menu = new Menu();
 	Order* order = new Order(menu);
-	Reservation* reservation = new Reservation();
+	Reservation* reservation = new Reservation;
 	Statistics& statistics = Statistics::GetInstance();
+
+	//////////////////
+	//unique_ptr<Staff> staff = Staff::createStaff("Waiter");
+	xWaiter* waiter1 = new xWaiter(*reservation);
+	//reservation->Attach(Staff::createStaff("Waiter"));
+	///////////////////
+
 
 	int Selection2 = 0;//maybe remove later, cuz its only for option 6 -Amelie
 

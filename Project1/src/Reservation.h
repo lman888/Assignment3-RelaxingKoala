@@ -4,9 +4,13 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <list>
 using namespace std;
 
-class Reservation
+#include "ISubject.h"
+#include "IObserver.h"
+
+class Reservation : public ISubject
 {
 public:
     Reservation();
@@ -38,16 +42,23 @@ public:
     //Writes created reservation to array 
     void AddReservation();
 
+    //Shows all available time for Reservation
+    void ShowAvailableTimes();
+
     //Customer arrives, removes reservation from array
     void RemoveReservation();
 
     //Returns a list of Reservations
     void ShowReservations();
 
-    
+    ///OVERRIDING ISUBJECT INTERFACE
+    void Attach(IObserver* observer);
+    void Detach(IObserver* observer);
+    void Notify();
+    void CreateMessage(string msg);
+    void HowManyObservers();
 
-    
-    
+
 private:
     void RetrieveReservationsFromDataBase();
 
@@ -57,4 +68,8 @@ private:
     vector<string> AvailableTimesVector;
     vector<vector<string>> AvailableTimesInDaysVector;
     vector<Reservation> ReservationVector;
+
+
+    std::list<IObserver*> list_observer_;
+    std::string message_;
 };

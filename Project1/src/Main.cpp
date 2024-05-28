@@ -3,6 +3,7 @@
 #include "Order.h"
 #include "Reservation.h"
 #include "Statistics.h"
+#include "xWaiter.h"
 
 void ShowSelections()
 {
@@ -26,6 +27,14 @@ int main()
 	Order *order = new Order(menu);
 	Reservation *reservation = new Reservation();
 	Statistics &statistics = Statistics::GetInstance();
+
+	
+	//unique_ptr<Staff> staff = Staff::createStaff("Waiter"); //how do i make staff inherit IObserver?
+	//reservation->Attach(Staff::createStaff("Waiter"));
+
+	//Instantiating temporary xWaiter class object and allowing it to observe reservations
+	xWaiter* waiter1 = new xWaiter(*reservation);
+
 
 	int Selection2 = 0; // maybe remove later, cuz its only for option 6 -Amelie
 

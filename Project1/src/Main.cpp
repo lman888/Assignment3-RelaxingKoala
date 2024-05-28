@@ -1,15 +1,10 @@
 #include <iostream>
-<<<<<<< HEAD
-=======
-
->>>>>>> b30c640eee30351a3f9c06f47362fc8ca1f109b7
 #include "Menu.h"
 #include "Order.h"
 #include "Reservation.h"
 #include "Statistics.h"
 
-	void
-	ShowSelections()
+void ShowSelections()
 {
 	std::cout << "1 - Browse Menu\n";
 	std::cout << "2 - Add to Order\n";

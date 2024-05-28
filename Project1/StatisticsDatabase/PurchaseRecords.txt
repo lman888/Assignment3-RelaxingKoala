@@ -1,4 +1,4 @@
 Item: Latte: Cost: 3
-Item: Long-Black: Cost: 3.5
-Time: Mon May 27 14:53:55 2024
+Item: Latte: Cost: 3
+Time: Wed May 29 00:06:09 2024
 Order Type: dine-in

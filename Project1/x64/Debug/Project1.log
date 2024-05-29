@@ -1,2 +1,7 @@
-﻿  Project1.vcxproj -> C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe
+﻿  Main.cpp
+C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\src\Main.cpp(59,32): warning C4101: 'e': unreferenced local variable
+  Receipt.cpp
+  Statistics.cpp
+  Generating Code...
+  Project1.vcxproj -> C:\Users\karth\Downloads\SAD- AS3\Assignment3-RelaxingKoala\Project1\x64\Debug\Project1.exe
 C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(5428,5): error MSB3541: Files has invalid value "<<<<<<< HEAD". Illegal characters in path.

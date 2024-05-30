@@ -16,28 +16,38 @@ Reservation::Reservation()
 }
 
 
-void Reservation::Attach(IObserver* observer) {
+void Reservation::AttachObserver(IObserver* observer) {
     list_observer_.push_back(observer);
+    cout << "Reservation observer added\n";
 }
-void Reservation::Detach(IObserver* observer) {
+void Reservation::DetachObserver(IObserver* observer) {
     list_observer_.remove(observer);
+    cout << "Reservation observer removed\n";
 }
-void Reservation::Notify() {
-    std::list<IObserver*>::iterator iterator = list_observer_.begin();
+void Reservation::NotifyObservers() {
+    list<IObserver*>::iterator iterator = list_observer_.begin();
     this->HowManyObservers();
     while (iterator != list_observer_.end()) {
         (*iterator)->Update(message_);
         ++iterator;
     }
 }
-
-void Reservation::CreateMessage(std::string message = "Empty") {
+void Reservation::MessageToBeNotifiedToObservers(string message = "Empty") {
     this->message_ = message;
-    this->Notify();
+    this->NotifyObservers();
 }
 void Reservation::HowManyObservers() {
-    std::cout << "There are " << list_observer_.size() << " observers observing the reservation list.\n";
+    cout << "There are " << list_observer_.size() << " observers observing the reservation list.\n";
 }
+
+
+
+
+
+
+
+
+
 
 
 //Look through a document and grab the variables and pass the two variables into an array - ONLY runs when app starts
@@ -169,7 +179,8 @@ void Reservation::AddReservation()//Currently does not check for name dupes in s
     cin >> Year;*/
 
     //For development testing
-    /* Day = 1;
+    /* cout << "DEV MODE INPUT\n";
+    Day = 1;
      Month = 2;
      Year = 1903;
      Time = "10:45";
@@ -181,17 +192,30 @@ void Reservation::AddReservation()//Currently does not check for name dupes in s
     Day = 11;
     Month = 5;
     Year = 2024;
-    Time = "11:30";
+    Time = "12:30";
     NameOfReserver = "Jason";
-    NumOfPeople = 20;
+    NumOfPeople = 10;
 
     for (int i = 0; i < AvailableTimesInDaysVector.size(); i++) {
-        if (AvailableTimesInDaysVector[i][0] == to_string(Day) && AvailableTimesInDaysVector[i][1] == to_string(Month) && AvailableTimesInDaysVector[i][2] == to_string(Year) && AvailableTimesInDaysVector[i][3] == Time && AvailableTimesInDaysVector[i][4] != "3") {
-            cout << "Reservation made!\n";
+        if (AvailableTimesInDaysVector[i][0] == to_string(Day) && AvailableTimesInDaysVector[i][1] == to_string(Month) && AvailableTimesInDaysVector[i][2] == to_string(Year) && AvailableTimesInDaysVector[i][3] == Time && AvailableTimesInDaysVector[i][4] != numOfTablesPerTime) {
+            for (int j = 0; j < ReservationVector.size(); j++) {
+                if (ReservationVector[j].Day == Day && ReservationVector[j].Month == Month && ReservationVector[j].Year == Year && ReservationVector[j].Time == Time && ReservationVector[j].NameOfReserver == NameOfReserver) {
+                    cout << "There is another reservation with the same name at this time. Please enter another name or time instead\n";
+                    return;
+                }
+                if (NumOfPeople>maxPeoplePerTable || NumOfPeople<1) {
+                    cout << "You can't book for "<< NumOfPeople << " people. Please book for 1 to "<< maxPeoplePerTable  << " people.\n";
+                    return;
+                }
+            }
+            cout << "Reservation made for " << NameOfReserver << " on " << to_string(Day) << "-" << to_string(Month) << "-" << to_string(Year) << " at " << Time << " for " << to_string(NumOfPeople) << " people!\n";
+            ReservationVector.push_back(Reservation(Day, Month, Year, Time, NameOfReserver, NumOfPeople));
+
+            //Observer Pattern at work
             ostringstream msg;
             msg << "A reservation was made by " << NameOfReserver << " on " << to_string(Day) << "-" << to_string(Month) << "-" << to_string(Year) << " at " << Time << " for " << to_string(NumOfPeople) << " people.";
-            this->CreateMessage(msg.str());
-            ReservationVector.push_back(Reservation(Day, Month, Year, Time, NameOfReserver, NumOfPeople));
+            this->MessageToBeNotifiedToObservers(msg.str());
+
             UpdateReservationFile();
             return;
         }
@@ -201,9 +225,11 @@ void Reservation::AddReservation()//Currently does not check for name dupes in s
 }
 
 void Reservation::ShowAvailableTimes() {
+
+
     cout << "Available reservation times are: \n";
     for (int i = 0; i < AvailableTimesInDaysVector.size(); i++) {
-        if (AvailableTimesInDaysVector[i][4] != "3") {
+        if (AvailableTimesInDaysVector[i][4] != numOfTablesPerTime) {
             cout << AvailableTimesInDaysVector[i][0] << "-" << AvailableTimesInDaysVector[i][1] << "-" << AvailableTimesInDaysVector[i][2] << " " << AvailableTimesInDaysVector[i][3] << "\n";
         }
     }

@@ -11,8 +11,12 @@ using namespace std;
 class Statistics : public ISubject
 {
 public:
+	/*Statistics();
+	~Statistics() = default;*/
+
 	static Statistics &GetInstance()
 	{
+
 		static Statistics Instance;
 		return Instance;
 	}
@@ -28,16 +32,16 @@ public:
 	void DisplayStatistics();
 
 	//overriding the subject interface
-	void Attach(IObserver* observer) override 
+	void AttachObserver(IObserver* observer) override 
 	{
 		record_observer.push_back(observer);
 	}
 
-	void Detach(IObserver* observer) override 
+	void DetachObserver(IObserver* observer) override
 	{
 		record_observer.erase(remove(record_observer.begin(), record_observer.end(), observer), record_observer.end());
 	}
-	void Notify();
+	void NotifyObservers();
 
 private:
 	//vector<Receipt> record;

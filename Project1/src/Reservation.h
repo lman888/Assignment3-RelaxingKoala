@@ -4,9 +4,10 @@
 #include <string>
 #include <vector>
 #include <array>
-#include <list>
 using namespace std;
 
+//ISUBJECT
+#include <list>
 #include "ISubject.h"
 #include "IObserver.h"
 
@@ -22,6 +23,9 @@ public:
     int Day;
     int Month;
     int Year;
+
+    string numOfTablesPerTime = "3";//change the number of tables able to be booked at a time
+    int maxPeoplePerTable = 10;
 
     Reservation(int aDay, int aMonth, int aYear, string aTime, string aNameOfReserver, int aNumOfPeople)
     {
@@ -52,10 +56,10 @@ public:
     void ShowReservations();
 
     ///OVERRIDING ISUBJECT INTERFACE
-    void Attach(IObserver* observer);
-    void Detach(IObserver* observer);
-    void Notify();
-    void CreateMessage(string msg);
+    void AttachObserver(IObserver* observer);
+    void DetachObserver(IObserver* observer);
+    void NotifyObservers();
+    void MessageToBeNotifiedToObservers(string msg);
     void HowManyObservers();
 
 
@@ -63,13 +67,17 @@ private:
     void RetrieveReservationsFromDataBase();
 
 
-    std::map<std::string, float> ReservationTimes;
+    map<string, float> ReservationTimes;
 
     vector<string> AvailableTimesVector;
     vector<vector<string>> AvailableTimesInDaysVector;
     vector<Reservation> ReservationVector;
 
+    //ISUBJECT
+    list<IObserver*> list_observer_;
+    string message_;
 
-    std::list<IObserver*> list_observer_;
-    std::string message_;
+    //ISUBJECT
+   /* std::list<IObserver*> list_observer_;
+    std::string message_;*/
 };

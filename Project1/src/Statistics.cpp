@@ -30,15 +30,13 @@ void Statistics::WriteRecord(Receipt* aReceipt)
 		{
 			StatisticsFile << "Item: " << item.first << ": " << "Cost: "<< item.second << std::endl;
 		}
-		
 		StatisticsFile << "Time: " << std::get<0>(ReceiptData) << "Order Type: " << std::get<2>(ReceiptData);
 		StatisticsFile.close();
-		Notify();
+		NotifyObservers();
 	}
 	else
 	{
 		std::cout << "File could not be open";
-
 	}
 }
 
@@ -65,7 +63,7 @@ void Statistics::DisplayStatistics()
 	}
 }
 
-void Statistics::Notify() 
+void Statistics::NotifyObservers()
 {
 	for (IObserver* observer : record_observer)
 	{

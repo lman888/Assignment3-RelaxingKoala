@@ -3,11 +3,36 @@
 #include "Receipt.h"
 #include "Menu.h"
 #include <iomanip>
+using namespace std;
 
 Order::Order(Menu *aMenu)
 {
     MenuItems = aMenu;
     TotalCost = 0.0f;
+}
+
+void Order::AttachObserver(IObserver* observer) {
+    list_observer_.push_back(observer);
+    cout << "Observer observer added\n";
+}
+void Order::DetachObserver(IObserver* observer) {
+    list_observer_.remove(observer);
+    cout << "Observer observer removed\n";
+}
+void Order::NotifyObservers() {
+    std::list<IObserver*>::iterator iterator = list_observer_.begin();
+    this->HowManyObservers();
+    while (iterator != list_observer_.end()) {
+        (*iterator)->Update(message_);
+        ++iterator;
+    }
+}
+void Order::MessageToBeNotifiedToObservers(std::string message = "Empty") {
+    this->message_ = message;
+    this->NotifyObservers();
+}
+void Order::HowManyObservers() {
+    std::cout << "There are " << list_observer_.size() << " observers observing the reservation list.\n";
 }
 
 void Order::AddToOrder(const std::string &aItem)
@@ -57,7 +82,6 @@ void Order::ShowOrder() const
         std::cout << "Your Cart is currently Empty!\n";
         return;
     }
-
     for (const std::pair<const std::string, float> &OrderItem : OrderItems)
     {
         std::cout << "Order Item: " << OrderItem.first << " Cost: " << OrderItem.second << std::endl;

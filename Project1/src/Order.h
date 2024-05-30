@@ -2,10 +2,16 @@
 #include <map>
 #include <string>
 
+//ISUBJECT
+#include<list>
+#include<string>
+#include "ISubject.h"
+#include "IObserver.h"
+
 //Forward Declaration
 class Menu;
 
-class Order
+class Order: public ISubject
 {
 public:
 
@@ -21,6 +27,13 @@ public:
     void ShowTotalCost() const;
 
     void GenerateReceipt() const;
+
+    ///OVERRIDING ISUBJECT INTERFACE
+    void AttachObserver(IObserver* observer);
+    void DetachObserver(IObserver* observer);
+    void NotifyObservers();
+    void MessageToBeNotifiedToObservers(std::string msg);
+    void HowManyObservers();
     
 private:
 
@@ -31,4 +44,8 @@ private:
     float TotalCost;
 
     Menu* MenuItems;
+
+    //ISUBJECT
+    std::list<IObserver*> list_observer_;
+    std::string message_;
 };

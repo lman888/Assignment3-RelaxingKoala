@@ -33,6 +33,7 @@ void Statistics::WriteRecord(Receipt* aReceipt)
 		
 		StatisticsFile << "Time: " << std::get<0>(ReceiptData) << "Order Type: " << std::get<2>(ReceiptData);
 		StatisticsFile.close();
+		Notify();
 	}
 	else
 	{
@@ -61,5 +62,13 @@ void Statistics::DisplayStatistics()
 	else
 	{
 		std::cerr << "Unable to open file!" << std::endl;
+	}
+}
+
+void Statistics::Notify() 
+{
+	for (IObserver* observer : record_observer)
+	{
+		observer->Update("Statistics updated");
 	}
 }

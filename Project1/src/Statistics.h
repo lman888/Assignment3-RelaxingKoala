@@ -1,11 +1,14 @@
 #pragma once
 #include <vector>
 #include <map>
+#include <memory>
 #include <string>
+#include <list>
+#include "ISubject.h"
 #include "Receipt.h"
 using namespace std;
 
-class Statistics
+class Statistics : public ISubject
 {
 public:
 	static Statistics &GetInstance()
@@ -24,6 +27,13 @@ public:
 
 	void DisplayStatistics();
 
+	//overriding the subject interface
+	void Attach(IObserver* observer);
+	void Detach(IObserver* observer);
+	void Notify();
+
 private:
 	vector<Receipt> record;
+
+	list<IObserver*> record_observer;
 };

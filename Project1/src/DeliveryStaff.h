@@ -1,20 +1,24 @@
-//
-//  DeliveryStaff.h
-//  Assignment3
-//
-//  Created by Stefanus Wilfrid Admaja on 18/5/2024.
-//
-
-#ifndef DeliveryStaff_h
-#define DeliveryStaff_h
+#ifndef DELIVERY_STAFF_H
+#define DELIVERY_STAFF_H
 
 #include "Staff.h"
 
-class DeliveryStaff : public Staff {
+class DeliveryStaff : public Staff
+{
 public:
-    void performTask() override; // Overridden performTask method
+    DeliveryStaff(Reservation &reservation);
+    ~DeliveryStaff();
+
+    void performTask() override;
+    void Update(const std::string &message_from_subject) override;
+    void RemoveMeFromTheList();
+    void PrintInfo();
+
+private:
+    std::string message_from_subject_;
+    Reservation &subject_;
+    static int static_number_;
+    int number_;
 };
 
-
-
-#endif /* DeliveryStaff_h */
+#endif // DELIVERY_STAFF_H

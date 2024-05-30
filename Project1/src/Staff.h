@@ -1,25 +1,21 @@
-//
-//  Staff.h
-//  Assignment3
-//
-//  Created by Stefanus Wilfrid Admaja on 18/5/2024.
-//
-
-#ifndef Staff_h
-#define Staff_h
+#ifndef STAFF_H
+#define STAFF_H
 
 #include <memory>
 #include <string>
+#include <iostream>
+#include "IObserver.h"
+#include "Reservation.h"
 #include "Order.h"
 
-class Staff
+class Staff : public IObserver
 {
 public:
-    virtual void performTask(Order &order) = 0; //  virtual function for performing role-specific tasks
-    virtual ~Staff() {}                         //  destructor
+    virtual void performTask() = 0; // Virtual function for performing role-specific tasks
+    virtual ~Staff() {}             // Destructor
 
-    // Factory Method:  create specific staff objects
-    static std::unique_ptr<Staff> createStaff(const std::string &type);
+    // Factory Method: Create specific staff objects
+    static std::unique_ptr<Staff> createStaff(const std::string &type, Reservation &reservation);
 };
 
-#endif
+#endif // STAFF_H

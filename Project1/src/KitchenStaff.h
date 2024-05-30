@@ -1,20 +1,24 @@
-//
-//  KitchenStaff.h
-//  Assignment3
-//
-//  Created by Stefanus Wilfrid Admaja on 18/5/2024.
-//
-
-#ifndef KitchenStaff_h
-#define KitchenStaff_h
+#ifndef KITCHEN_STAFF_H
+#define KITCHEN_STAFF_H
 
 #include "Staff.h"
-#include "Order.h"
 
 class KitchenStaff : public Staff
 {
 public:
-    void performTask(Order &order) override; // Overridden performTask method
+    KitchenStaff(Reservation &reservation);
+    ~KitchenStaff();
+
+    void performTask() override;
+    void Update(const std::string &message_from_subject) override;
+    void RemoveMeFromTheList();
+    void PrintInfo();
+
+private:
+    std::string message_from_subject_;
+    Reservation &subject_;
+    static int static_number_;
+    int number_;
 };
 
-#endif /* KitchenStaff_h */
+#endif // KITCHEN_STAFF_H

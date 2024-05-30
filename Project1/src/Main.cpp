@@ -4,6 +4,7 @@
 #include "Reservation.h"
 #include "Statistics.h"
 #include "xWaiter.h"
+#include "Staff.h"
 
 void ShowSelections()
 {
@@ -28,13 +29,14 @@ int main()
 	Reservation *reservation = new Reservation();
 	Statistics &statistics = Statistics::GetInstance();
 
-	
-	//unique_ptr<Staff> staff = Staff::createStaff("Waiter"); //how do i make staff inherit IObserver?
-	//reservation->Attach(Staff::createStaff("Waiter"));
+	// unique_ptr<Staff> staff = Staff::createStaff("Waiter"); //how do i make staff inherit IObserver?
+	// reservation->Attach(Staff::createStaff("Waiter"));
 
-	//Instantiating temporary xWaiter class object and allowing it to observe reservations
-	xWaiter* waiter1 = new xWaiter(*reservation);
+	// Instantiating temporary xWaiter class object and allowing it to observe reservations
+	//    xWaiter* waiter1 = new Waiter(*reservation);
+	std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
 
+	//    std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
 
 	int Selection2 = 0; // maybe remove later, cuz its only for option 6 -Amelie
 

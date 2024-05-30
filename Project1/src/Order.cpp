@@ -42,7 +42,6 @@ void Order::AddToOrder(const std::string &aItem)
         std::cout << "Menu is not valid\n";
         return;
     }
-
     for (std::pair<const std::string, float> &MenuItem : MenuItems->GetMenuItems())
     {
         if (CaseSensitiveStringCompare(aItem, MenuItem.first))
@@ -50,9 +49,10 @@ void Order::AddToOrder(const std::string &aItem)
             OrderItems.insert({aItem, MenuItem.second});
             TotalCost += MenuItem.second;
             std::cout << "Successfully added Item: " << aItem << " to Order!\n";
-            break;
+            return;
         }
     }
+    std::cout << "Please enter a valid Menu Item\n";
 }
 
 void Order::RemoveFromOrder(const std::string &aItem)
@@ -73,6 +73,7 @@ void Order::RemoveFromOrder(const std::string &aItem)
             return;
         }
     }
+    std::cout << "Please enter a valid Menu Item\n";
 }
 
 void Order::ShowOrder() const
@@ -104,7 +105,9 @@ bool Order::CaseSensitiveStringCompare(const std::string &aItem, const std::stri
 {
     if (aItem.length() != aMenuItem.length())
     {
-        std::cout << "Please enter a valid Menu Item\n";
+        //moved to AddToOrder and RemoveFromOrder functions cuz its looping
+        //std::cout << "Please enter a valid Menu Item\n";
+        
         return false;
     }
 

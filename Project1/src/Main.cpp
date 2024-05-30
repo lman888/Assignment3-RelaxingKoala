@@ -52,12 +52,12 @@ int main()
 	/* Shopping Section */
 	std::cout << "Welcome to the Relaxing Koala!\n";
 	std::cout << "Please make a selection of what you would like to do!\n";
+	
 	ShowSelections();
-
 	int Selection = 0;
 	std::string SelectedItem;
 	while (bIsShopping)
-	{
+	{		
 		std::string input;
 		std::getline(std::cin, input);
 		try
@@ -68,7 +68,6 @@ int main()
 		{
 			continue;
 		}
-
 		switch (Selection)
 		{
 		case 1:
@@ -106,10 +105,6 @@ int main()
 			bIsShopping = false;
 			break;
 		case 6:
-			// Make Reservation (WIP by Amelie)
-			// do i make the reservation menu here?
-			
-
 			std::cout << "Reserve a table here! (Main.cpp)\n";
 			std::cout << "1 - Add a reservation\n";
 			std::cout << "2 - Remove a reservation\n";
@@ -143,7 +138,8 @@ int main()
 			std::cout << "Please make a valid selection of what you would like to do!\n";
 			break;
 		}
-		std::cout << "==================================================================\n";
+		std::cout << "==================================================================\n"; 
+		ShowSelections();
 	}
 	/* End of Shopping Section */
 

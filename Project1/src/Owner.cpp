@@ -5,6 +5,6 @@
 
 void Owner::Update()
 {
-	//message_from_subject_ = message_from_subject;
+	message_from_subject_ = message_from_subject;
 }
 

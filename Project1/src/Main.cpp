@@ -34,7 +34,7 @@ int main()
 
 	// Instantiating temporary xWaiter class object and allowing it to observe reservations
 	//    xWaiter* waiter1 = new Waiter(*reservation);
-	std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
+	//std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
 
 	//    std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
 

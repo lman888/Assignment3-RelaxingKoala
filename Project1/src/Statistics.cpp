@@ -19,7 +19,7 @@ void Statistics::RetrieveRecord()
 
 void Statistics::WriteRecord(Receipt* aReceipt)
 {
-	ofstream StatisticsFile("StatisticsDatabase/PurchaseRecords.txt");
+	ofstream StatisticsFile("StatisticsDatabase/PurchaseRecords.txt", ios::app);
 
 	if (StatisticsFile.is_open())
 	{

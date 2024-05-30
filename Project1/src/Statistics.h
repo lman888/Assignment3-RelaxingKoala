@@ -28,12 +28,19 @@ public:
 	void DisplayStatistics();
 
 	//overriding the subject interface
-	void Attach(IObserver* observer);
-	void Detach(IObserver* observer);
+	void Attach(IObserver* observer) override 
+	{
+		record_observer.push_back(observer);
+	}
+
+	void Detach(IObserver* observer) override 
+	{
+		record_observer.erase(remove(record_observer.begin(), record_observer.end(), observer), record_observer.end());
+	}
 	void Notify();
 
 private:
-	vector<Receipt> record;
+	//vector<Receipt> record;
 
 	list<IObserver*> record_observer;
 };

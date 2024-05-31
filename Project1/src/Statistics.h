@@ -16,7 +16,6 @@ public:
 
 	static Statistics &GetInstance()
 	{
-
 		static Statistics Instance;
 		return Instance;
 	}
@@ -25,6 +24,12 @@ public:
 	string deliveryType;
 	float totalAmount;
 
+	void DisplayStatisticsSummaryFile();
+
+	void GetStatisticsFromSummaryFile();
+
+	void UpdateStatisticsFile(Receipt* aReceipt, float totalAmount);
+
 	void WriteRecord(Receipt *aReceipt);
 
 	void RetrieveRecord();
@@ -32,19 +37,19 @@ public:
 	void DisplayStatistics();
 
 	//overriding the subject interface
-	void AttachObserver(IObserver* observer) override 
-	{
-		record_observer.push_back(observer);
-	}
-
-	void DetachObserver(IObserver* observer) override
-	{
-		record_observer.erase(remove(record_observer.begin(), record_observer.end(), observer), record_observer.end());
-	}
+	void AttachObserver(IObserver* observer);
+	void DetachObserver(IObserver* observer);
 	void NotifyObservers();
 
 private:
-	//vector<Receipt> record;
+	int numberOfDineIns;
+	int numberOfDeliveries;
+	int numberOfTakeaways;
+	float totalEarned;
+	string mostPopularMenuItem="";
+	map<string, int> ItemsAndQuantityOrdered;
+
+	vector<string> itemNameVector;
 
 	list<IObserver*> record_observer;
 };

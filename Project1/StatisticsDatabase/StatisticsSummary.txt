@@ -1,0 +1,5 @@
+10 0 0 29.5
+Apple 7
+Banana 1
+Latte 2
+Long-Black 2

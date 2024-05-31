@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include "Receipt.h"
-#include "Receipt.h"
 
 #include <chrono>
 #include <iomanip>
@@ -17,16 +16,20 @@
 
 void Receipt::DisplayReceiptData()
 {
-    std::cout << "Receipt data: " << std::endl;
-
-    std::cout << "Time Ordered: " << timestamp;
-    std::cout << "Items ordered: " << std::endl;
+    std::cout << "_______________________________________________" << std::endl;
+    std::cout << "|Receipt" << std::endl;
+    std::cout << "|______________________________________________" << std::endl;
+    std::cout << "|Time ordered: " << timestamp;
+    std::cout << "|" << std::endl;
+    std::cout << "|Items ordered - " << std::endl;
     for (const pair<const string, float> &item : itemsOrdered)
     {
-        std::cout << item.first << ": " << item.second << std::endl;
+        std::cout << "|"<<item.first << ": " << item.second << std::endl;
     }
-    std::cout << "Delivery type: " << deliveryType << std::endl;
-    std::cout << "Total amount: " << totalAmount << std::endl;
+    std::cout << "|" << std::endl;
+    std::cout << "|Delivery type: " << deliveryType << std::endl;
+    std::cout << "|Total amount: " << totalAmount << std::endl;
+    std::cout << "|______________________________________________" << std::endl;
 }
 
 Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &itemsOrdered, const std::string &deliveryType) : totalAmount(totalAmount), itemsOrdered(itemsOrdered), deliveryType(deliveryType)
@@ -51,8 +54,12 @@ Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &ite
 
     Statistics &statistics = Statistics::GetInstance();
 
+    //cout << "WriteRecord";
     statistics.WriteRecord(this);
-
+    //cout << "GetStatisticsFromSummaryFile";
+    statistics.GetStatisticsFromSummaryFile();
+    //cout << "UpdateStatisticsFile";
+    statistics.UpdateStatisticsFile(this, totalAmount);
     DisplayReceiptData();
 }
 

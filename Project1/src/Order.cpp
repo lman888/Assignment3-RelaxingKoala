@@ -46,9 +46,9 @@ void Order::AddToOrder(const std::string &aItem)
     {
         if (CaseSensitiveStringCompare(aItem, MenuItem.first))
         {
-            OrderItems.insert({aItem, MenuItem.second});
+            OrderItems.insert({ MenuItem.first, MenuItem.second});
             TotalCost += MenuItem.second;
-            std::cout << "Successfully added Item: " << aItem << " to Order!\n";
+            std::cout << "Successfully added Item: " << MenuItem.first << " to Order!\n";
             return;
         }
     }
@@ -69,7 +69,7 @@ void Order::RemoveFromOrder(const std::string &aItem)
         {
             TotalCost -= OrderItem.second;
             OrderItems.erase(OrderItem.first);
-            std::cout << "Successfully removed Item: " << aItem << " from the order Order!\n";
+            std::cout << "Successfully removed Item: " << OrderItem.first << " from the order Order!\n";
             return;
         }
     }
@@ -89,6 +89,12 @@ void Order::ShowOrder() const
     }
 }
 
+void Order::ClearOrder()
+{
+     TotalCost =0;
+     //clear all items from orderitems here please
+}
+
 void Order::ShowTotalCost() const
 {
     std::cout << "Total: " << TotalCost << "\n";
@@ -96,9 +102,9 @@ void Order::ShowTotalCost() const
 
 void Order::GenerateReceipt() const
 {
-    std::cout << "Order finished. Receipt generated." << std::endl;
-    Receipt receipt(TotalCost, OrderItems, "dine-in");
-    std::cout << "Receipt has been Generated!\n";
+    std::cout << "Checkout requested, generating receipt." << std::endl;
+    Receipt receipt(TotalCost, OrderItems, "Dine-in");
+    std::cout << "Receipt has been generated!\n";
 }
 
 bool Order::CaseSensitiveStringCompare(const std::string &aItem, const std::string &aMenuItem)

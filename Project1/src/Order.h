@@ -24,9 +24,13 @@ public:
 
     void ShowOrder() const;
 
+    void ClearOrder();
+
     void ShowTotalCost() const;
 
     void GenerateReceipt() const;
+
+
 
     ///OVERRIDING ISUBJECT INTERFACE
     void AttachObserver(IObserver* observer);

@@ -3,11 +3,11 @@
 #include "Order.h"
 #include "Reservation.h"
 #include "Statistics.h"
-#include "xWaiter.h"
-#include "xKitchen.h"
+#include "OrderObserver.h"
+#include "ReservationObserver.h"
 #include "Staff.h"
 
-void ShowSelections()
+void ShowCustomerSelections()
 {
 	std::cout << "1 - Browse Menu\n";
 	std::cout << "2 - Add to Order\n";
@@ -18,8 +18,146 @@ void ShowSelections()
 	std::cout << "7 - Exit\n";
 	std::cout << "8 - Statistics\n";
 }
-
-int main()
+void ShowWaitStaffSelections()
+{
+	std::cout << "1 - Browse Menu\n";
+	std::cout << "2 - Add to Order\n";
+	std::cout << "3 - Remove from Order\n";
+	std::cout << "4 - View Order\n";
+	std::cout << "5 - Checkout\n";
+	std::cout << "6 - Make a Reservation\n";
+	std::cout << "7 - Exit\n";
+	std::cout << "8 - Statistics\n";
+}
+void ShowKitchenStaffSelections()
+{
+	std::cout << "1 - Browse Menu\n";
+	std::cout << "2 - Add to Order\n";
+	std::cout << "3 - Remove from Order\n";
+	std::cout << "4 - View Order\n";
+	std::cout << "5 - Checkout\n";
+	std::cout << "6 - Make a Reservation\n";
+	std::cout << "7 - Exit\n";
+	std::cout << "8 - Statistics\n";
+}
+void ShowDeliveryStaffSelections()
+{
+	std::cout << "1 - Browse Menu\n";
+	std::cout << "2 - Add to Order\n";
+	std::cout << "3 - Remove from Order\n";
+	std::cout << "4 - View Order\n";
+	std::cout << "5 - Checkout\n";
+	std::cout << "6 - Make a Reservation\n";
+	std::cout << "7 - Exit\n";
+	std::cout << "8 - Statistics\n";
+}
+void ShowOwnerSelections()
+{
+	std::cout << "1 - Browse Menu\n";
+	std::cout << "2 - Add to Order\n";
+	std::cout << "3 - Remove from Order\n";
+	std::cout << "4 - View Order\n";
+	std::cout << "5 - Checkout\n";
+	std::cout << "6 - Make a Reservation\n";
+	std::cout << "7 - Exit\n";
+	std::cout << "8 - Statistics\n";
+}
+int LoginMenu() { //new main()
+	std::cout << "Hello me!" << std::endl;
+	int loginChoice;
+	std::cin >> loginChoice;
+	switch (loginChoice) {
+	case 1:
+		std::cout << "Hello customer!" << std::endl;
+		//customerMenu();
+		break;
+	case 2:
+		std::cout << "Hello wait staff!" << std::endl;
+		//waitStaffMenu();
+		break;
+	case 3:
+		std::cout << "Hello kitchen staff!" << std::endl;
+		//kitchenStaffMenu();
+		break;
+	case 4:
+		std::cout << "Hello delivery staff!" << std::endl;
+		//deliveryStaffChoice();
+		break;
+	case 5:
+		std::cout << "Hello owner!" << std::endl;
+		//ownerMenu();
+		break;
+	default:
+		std::cout << "Enter a valid number\n";
+		break;
+	}
+	return 0;
+}
+int WaiterMenu() {
+	int waitStaffChoice;
+	std::cin >> waitStaffChoice;
+	switch (waitStaffChoice) {
+	case 1:
+		std::cout << "choice 1" << std::endl;
+		break;
+	case 2:
+		std::cout << "choice 2" << std::endl;
+		break;
+	default:
+		std::cout << "Enter a valid number\n";
+		break;
+	}
+	return 0;
+}
+int KitchenStaffMenu() {
+	int kitchenStaffChoice;
+	std::cin >> kitchenStaffChoice;
+	switch (kitchenStaffChoice) {
+	case 1:
+		std::cout << "choice 1" << std::endl;
+		break;
+	case 2:
+		std::cout << "choice 2" << std::endl;
+		break;
+	default:
+		std::cout << "Enter a valid number\n";
+		break;
+	}
+	return 0;
+}
+int DeliveryStaffMenu() {
+	int deliveryStaffChoice;
+	std::cin >> deliveryStaffChoice;
+	switch (deliveryStaffChoice) {
+	case 1:
+		std::cout << "choice 1" << std::endl;
+		break;
+	case 2:
+		std::cout << "choice 2" << std::endl;
+		break;
+	default:
+		std::cout << "Enter a valid number\n";
+		break;
+	}
+	return 0;
+}
+int OwnerMenu() {
+	int ownerChoice;
+	std::cin >> ownerChoice;
+	switch (ownerChoice) {
+	case 1:
+		std::cout << "choice 1" << std::endl;
+		break;
+	case 2:
+		std::cout << "choice 2" << std::endl;
+		break;
+	default:
+		std::cout << "Enter a valid number\n";
+		break;
+	}
+	return 0;
+}
+int main()//CustomerMenu()
 {
 	std::cout << "Hello me!" << std::endl;
 
@@ -40,11 +178,10 @@ int main()
 	waiter2 = new xWaiter(*reservation);
 	waiter2->~xWaiter();
 	waiter2->RemoveMeFromTheList();*/
-	
 
-	//std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);//stefanus's
 
-	int Selection2 = 0; // maybe remove later, cuz its only for option 6 -Amelie
+	//stefanus's
+	//std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
 
 	// Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
@@ -53,22 +190,27 @@ int main()
 	std::cout << "Welcome to the Relaxing Koala!\n";
 	std::cout << "Please make a selection of what you would like to do!\n";
 	
-	ShowSelections();
-	int Selection = 0;
-	std::string SelectedItem;
+	ShowCustomerSelections();
+	std::cout << "=================================\n";
+	int Selection, Selection2 = 0;
+	std::string input;
+	
 	while (bIsShopping)
-	{		
+	{	
+		int customerSelection;
+		
 		std::string input;
 		std::getline(std::cin, input);
 		try
 		{
-			Selection = std::stoi(input);
+			customerSelection = std::stoi(input);
 		}
-		catch (const std::exception &e)
+		catch (const std::exception& e)
 		{
+			std::cout << "Please enter a number\n";
 			continue;
 		}
-		switch (Selection)
+		switch (customerSelection)
 		{
 		case 1:
 			// Presents Menu items to screen
@@ -98,13 +240,31 @@ int main()
 			std::cout << "Checkout Here!\n";
 			order->ShowTotalCost();
 			order->GenerateReceipt();
-			/////////////////////////////////////////////////////////////////////////////////////////
+
 			//Observer Pattern at work
 			order->MessageToBeNotifiedToObservers("A new order has been confirmed");
-			/////////////////////////////////////////////////////////////////////////////////////////
-			bIsShopping = false;
+
+			//Continue? menu
+			std::cout << "Make another order?\n";
+			std::cout << "1 - Yes\n";
+			std::cout << "2 - No (Exit application)\n";
+			cin >> Selection2;
+			switch (Selection2)
+			{
+			case 1:
+				//Make another order
+				//order->ClearOrder();
+				break;
+			case 2:
+				//Exit application
+				return 0;
+			default:
+				std::cout << "Please make a valid selection of what you would like to do!\n";
+				break;
+			}
 			break;
 		case 6:
+			// Table Reservation Menu
 			std::cout << "Reserve a table here! (Main.cpp)\n";
 			std::cout << "1 - Add a reservation\n";
 			std::cout << "2 - Remove a reservation\n";
@@ -114,32 +274,36 @@ int main()
 			switch (Selection2)
 			{
 			case 1:
-				reservation->AddReservation(); // COMPLETE
+				//Make a reservation
+				reservation->AddReservation();
 				break;
 			case 2:
-				reservation->RemoveReservation(); // COMPLETE
+				//Remove a reservation
+				reservation->RemoveReservation();
 				break;
 			default:
 				std::cout << "Please make a valid selection of what you would like to do!\n";
 				break;
 			}
-			// no sanitising done yet, might completely remove this menu later
-
 			break;
 		case 7:
 			// Exit Shop and close application
 			bIsShopping = false;
-			break;
+			return 0;
 		case 8:
 			// Write order records to database8
 			statistics.DisplayStatistics();
 			break;
 		default:
-			std::cout << "Please make a valid selection of what you would like to do!\n";
+			std::cout << "Please select a valid number!\n";
 			break;
 		}
-		std::cout << "==================================================================\n"; 
-		ShowSelections();
+		std::cout << "==================================================================\n";
+		ShowCustomerSelections();
+		std::cout << "=================================\n"; 
+		
+		
+		
 	}
 	/* End of Shopping Section */
 

@@ -24,7 +24,7 @@ void Menu::RetrieveMenuFromDataBase()
             std::string ItemName;
             float ItemCost;
 
-            //Extract the data from the txt file
+            //Extract the data from the txt file, associate each item name (key) with a its cost (value)
             if (StringStream >> ItemName >> ItemCost)
             {
                 MenuItems[ItemName] = ItemCost;

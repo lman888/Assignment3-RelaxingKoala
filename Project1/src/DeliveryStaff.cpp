@@ -5,14 +5,14 @@ int DeliveryStaff::static_number_ = 0;
 
 DeliveryStaff::DeliveryStaff(Reservation &reservation) : subject_(reservation)
 {
-    subject_.Attach(this);
+    subject_.AttachObserver(this);
     std::cout << "IObserver inherited DeliveryStaff num \"" << ++DeliveryStaff::static_number_ << "\" instantiated.\n";
     this->number_ = DeliveryStaff::static_number_;
 }
 
 DeliveryStaff::~DeliveryStaff()
 {
-    subject_.Detach(this);
+    subject_.DetachObserver(this);
     std::cout << "Goodbye from DeliveryStaff num \"" << this->number_ << "\".\n";
 }
 
@@ -30,7 +30,7 @@ void DeliveryStaff::Update(const std::string &message_from_subject)
 
 void DeliveryStaff::RemoveMeFromTheList()
 {
-    subject_.Detach(this);
+    subject_.DetachObserver(this);
     std::cout << "DeliveryStaff num \"" << number_ << "\" removed from the list.\n";
 }
 

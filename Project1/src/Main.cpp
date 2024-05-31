@@ -246,9 +246,9 @@ int main()//CustomerMenu()
 			else if (input == "3") {
 				orderType = "Delivery";
 			}
-			order->GenerateReceipt(orderType);
+			
 			payment->initiatePayment();
-			order->GenerateReceipt();
+			order->GenerateReceipt(orderType);
 
 			//Observer Pattern at work
 			order->MessageToBeNotifiedToObservers("A new order has been confirmed");

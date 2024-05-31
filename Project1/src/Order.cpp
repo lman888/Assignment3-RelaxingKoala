@@ -91,8 +91,14 @@ void Order::ShowOrder() const
 
 void Order::ClearOrder()
 {
-     TotalCost =0;
-     //clear all items from orderitems here please
+    OrderItems.clear();
+
+    for (const std::pair<const std::string, float>& OrderItem : OrderItems)
+    {
+        std::cout << "Order Item: " << OrderItem.first << " Cost: " << OrderItem.second << std::endl;
+    }
+    std::cout << "\nYour cart has been cleared!\n" << std::endl;
+     
 }
 
 void Order::ShowTotalCost() const

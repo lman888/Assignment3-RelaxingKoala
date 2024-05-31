@@ -6,6 +6,7 @@
 #include "OrderObserver.h"
 #include "ReservationObserver.h"
 #include "Staff.h"
+#include "Payment.h"
 
 void ShowCustomerSelections()
 {
@@ -167,6 +168,7 @@ int main()//CustomerMenu()
 	Order *order = new Order(menu);
 	Reservation *reservation = new Reservation();
 	Statistics &statistics = Statistics::GetInstance();
+	Payment* payment = new Payment();
 
 	
 
@@ -239,6 +241,7 @@ int main()//CustomerMenu()
 			// Checkout
 			std::cout << "Checkout Here!\n";
 			order->ShowTotalCost();
+			payment->initiatePayment();
 			order->GenerateReceipt();
 
 			//Observer Pattern at work

@@ -165,7 +165,7 @@ void Reservation::AddReservation()//Currently does not check for name dupes in s
     cout << "Enter the reservation you want to create with the name, time, num of people, day, month and year for reservation" << endl;
 
     //Comment during development
-    /*cout << "Enter NameOfReserver (string)" << endl;
+    cout << "Enter NameOfReserver (string)" << endl;
     cin >> NameOfReserver;
     cout << "Enter Time (string)" << endl;
     cin >> Time;
@@ -176,7 +176,7 @@ void Reservation::AddReservation()//Currently does not check for name dupes in s
     cout << "Enter Month (int)" << endl;
     cin >> Month;
     cout << "Enter Year (int)" << endl;
-    cin >> Year;*/
+    cin >> Year;
 
     //For development testing
     /* cout << "DEV MODE INPUT\n";
@@ -188,13 +188,13 @@ void Reservation::AddReservation()//Currently does not check for name dupes in s
      NumOfPeople = 100;*/
 
      //For development testing 2
-    cout << "DEV MODE INPUT\n";
+    /*cout << "DEV MODE INPUT\n";
     Day = 11;
     Month = 5;
     Year = 2024;
     Time = "12:30";
     NameOfReserver = "Jason";
-    NumOfPeople = 10;
+    NumOfPeople = 10;*/
 
     for (int i = 0; i < AvailableTimesInDaysVector.size(); i++) {
         if (AvailableTimesInDaysVector[i][0] == to_string(Day) && AvailableTimesInDaysVector[i][1] == to_string(Month) && AvailableTimesInDaysVector[i][2] == to_string(Year) && AvailableTimesInDaysVector[i][3] == Time && AvailableTimesInDaysVector[i][4] != numOfTablesPerTime) {
@@ -277,7 +277,7 @@ void Reservation::ShowReservations()
     cout << "Show all reservation here! (ShowReservations(),Reservation.cpp)" << endl;//Remove later
 
     //For pretty UI 
-    cout << "Day\t|Month\t|Year\t|Time\t|Num Of People\t|Name of Reserver\n";
+    cout << "\nDay\t|Month\t|Year\t|Time\t|Num Of People\t|Name of Reserver\n";
     cout << "----\t----\t----\t----\t----\t------------\t\n";
     for (auto& Reservation : ReservationVector) {
         cout << Reservation.Day << "\t|" << Reservation.Month << "\t|" << Reservation.Year << "\t|" << Reservation.Time << "\t|" << Reservation.NumOfPeople << "\t\t|" << Reservation.NameOfReserver << "\n";

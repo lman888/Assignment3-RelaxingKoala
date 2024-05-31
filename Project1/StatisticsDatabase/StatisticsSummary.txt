@@ -1,5 +1,5 @@
-10 0 0 29.5
-Apple 7
-Banana 1
+6 1 0 18.5
+Apple 2
 Latte 2
-Long-Black 2
+Long-Black 1
+Banana 2

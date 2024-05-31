@@ -28,7 +28,7 @@ public:
 
     void ShowTotalCost() const;
 
-    void GenerateReceipt() const;
+    void GenerateReceipt(std::string orderType) const;
 
 
 

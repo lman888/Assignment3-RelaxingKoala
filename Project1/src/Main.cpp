@@ -173,17 +173,8 @@ int main()//CustomerMenu()
 	
 
 	//Instantiating temporary xWaiter class object and allowing it to observe reservations
-	//xWaiter* waiter1 = new xWaiter(*reservation);
-	//xKitchen* kitchen1 = new xKitchen(*order); 
-	/*xWaiter* waiter2 = new xWaiter(*reservation);
-	reservation->DetachObserver(waiter2);
-	waiter2 = new xWaiter(*reservation);
-	waiter2->~xWaiter();
-	waiter2->RemoveMeFromTheList();*/
-
-
-	//stefanus's
-	//std::unique_ptr<Staff> waiter1 = Staff::createStaff("Waiter", *reservation);
+	ReservationObserver* waiter1 = new ReservationObserver(*reservation);
+	OrderObserver* kitchen1 = new OrderObserver(*order);
 
 	// Customer Cart
 	std::map<std::string, float> Cart = menu->GetMenuItems();
@@ -195,7 +186,7 @@ int main()//CustomerMenu()
 	ShowCustomerSelections();
 	std::cout << "=================================\n";
 	int Selection, Selection2 = 0;
-	std::string input;
+	std::string input, orderType;
 	
 	while (bIsShopping)
 	{	
@@ -241,6 +232,21 @@ int main()//CustomerMenu()
 			// Checkout
 			std::cout << "Checkout Here!\n";
 			order->ShowTotalCost();
+			std::cout << "What is the order type?\n";
+			std::cout << "1 - Dine-in\n";
+			std::cout << "2 - Takeaway\n";
+			std::cout << "3 - Delivery\n";
+			std::cin >> input;
+			if (input == "1") {
+				orderType = "Dine-in";
+			}
+			else if (input == "2") {
+				orderType = "Takeaway";
+			}
+			else if (input == "3") {
+				orderType = "Delivery";
+			}
+			order->GenerateReceipt(orderType);
 			payment->initiatePayment();
 			order->GenerateReceipt();
 
@@ -271,6 +277,7 @@ int main()//CustomerMenu()
 			std::cout << "Reserve a table here! (Main.cpp)\n";
 			std::cout << "1 - Add a reservation\n";
 			std::cout << "2 - Remove a reservation\n";
+			std::cout << "3 - Show all reservations\n";
 			std::cout << "Reserve a table here! (Main.cpp)\n";
 
 			std::cin >> Selection2;
@@ -284,6 +291,10 @@ int main()//CustomerMenu()
 				//Remove a reservation
 				reservation->RemoveReservation();
 				break;
+			case 3:
+				//Show all reservations
+				reservation->ShowReservations();
+				break;
 			default:
 				std::cout << "Please make a valid selection of what you would like to do!\n";
 				break;
@@ -295,14 +306,19 @@ int main()//CustomerMenu()
 			return 0;
 		case 8:
 			// Write order records to database8
-			statistics.DisplayStatistics();
+			std::cout << "------------------------------------\n";
+			std::cout << "Displaying all past purchases";
+			statistics.DisplayPastPurchases();
+			std::cout << "------------------------------------\n";
+			std::cout << "Displaying summary of basic statistics\n";
+			statistics.DisplayBasicStatistics();
 			break;
 		default:
 			std::cout << "Please select a valid number!\n";
 			break;
 		}
-		std::cout << "==================================================================\n";
-		ShowCustomerSelections();
+		//std::cout << "==================================================================\n";
+		//ShowCustomerSelections();
 		std::cout << "=================================\n"; 
 		
 		

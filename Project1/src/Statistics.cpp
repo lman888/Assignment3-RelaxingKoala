@@ -17,6 +17,15 @@ void Statistics::RetrieveRecord()
 		string line;
 	}
 }
+void Statistics::DisplayBasicStatistics() {
+	cout << "Number of Dine-in orders: " << numberOfDineIns << endl;
+	cout << "Number of Takeaway orders: " << numberOfTakeaways << endl;
+	cout << "Number of Delivery orders: " << numberOfDeliveries << endl;
+	cout << "Total revenue: " << totalEarned << endl;
+	for (int i = 0; i < itemNameVector.size(); i++) {
+		cout << ItemsAndQuantityOrdered[itemNameVector[i]]  << " of " << itemNameVector[i] << "(s) has/have been sold in total." << endl;
+	}
+}
 void Statistics::GetStatisticsFromSummaryFile(){
 	std::ifstream StatsFile("StatisticsDatabase/StatisticsSummary.txt");
 	string Line;
@@ -54,26 +63,23 @@ void Statistics::GetStatisticsFromSummaryFile(){
 						if (found == 0) {
 							itemNameVector.push_back(item);
 						}
-						cout << quantity << " of " << item << "(s) have been sold in total." << endl;
-
+						//cout << quantity << " of " << item << "(s) has/have been sold in total." << endl;
 					}
 					else
 					{
 						cout << "Error Parsing Following Line " << Line << endl;
 					}
 				}
-
-				cout << "numberOfDineIns: " << numberOfDineIns << endl;
-				cout << "numberOfDeliveries: " << numberOfDeliveries << endl;
-				cout << "numberOfTakeaways: " << numberOfTakeaways << endl;
-				cout << "totalEarned: " << totalEarned << endl;
+				/*cout << "Number of Dine-in orders: " << numberOfDineIns << endl;
+				cout << "Number of Delivery orders: " << numberOfDeliveries << endl;
+				cout << "Number of Takeaway orders: " << numberOfTakeaways << endl;
+				cout << "Total revenue: " << totalEarned << endl;*/
 			}
 			else
 			{
 				cout << "Error Parsing First Line " << Line << endl;
 			}
 		}
-			
 		StatsFile.close();
 	}
 	else
@@ -83,6 +89,7 @@ void Statistics::GetStatisticsFromSummaryFile(){
 }
 
 void Statistics::UpdateStatisticsFile(Receipt* aReceipt, float totalAmount) {
+	GetStatisticsFromSummaryFile();
 	int found = 0;
 	ofstream StatisticsFile("StatisticsDatabase/StatisticsSummary.txt");//, ios::app
 
@@ -161,7 +168,7 @@ void Statistics::WriteRecord(Receipt* aReceipt)
 	}
 }
 
-void Statistics::DisplayStatistics()
+void Statistics::DisplayPastPurchases()
 {
 	//Look through a document and grab the variables and pass the two variables into an array
 

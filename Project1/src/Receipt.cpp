@@ -54,11 +54,7 @@ Receipt::Receipt(float totalAmount, const std::multimap<std::string, float> &ite
 
     Statistics &statistics = Statistics::GetInstance();
 
-    //cout << "WriteRecord";
     statistics.WriteRecord(this);
-    //cout << "GetStatisticsFromSummaryFile";
-    statistics.GetStatisticsFromSummaryFile();
-    //cout << "UpdateStatisticsFile";
     statistics.UpdateStatisticsFile(this, totalAmount);
     DisplayReceiptData();
 }

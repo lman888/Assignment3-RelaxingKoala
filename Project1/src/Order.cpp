@@ -13,11 +13,11 @@ Order::Order(Menu *aMenu)
 
 void Order::AttachObserver(IObserver* observer) {
     list_observer_.push_back(observer);
-    cout << "Observer observer added\n";
+    cout << "Order observer added\n";
 }
 void Order::DetachObserver(IObserver* observer) {
     list_observer_.remove(observer);
-    cout << "Observer observer removed\n";
+    cout << "Order observer removed\n";
 }
 void Order::NotifyObservers() {
     std::list<IObserver*>::iterator iterator = list_observer_.begin();
@@ -32,7 +32,7 @@ void Order::MessageToBeNotifiedToObservers(std::string message = "Empty") {
     this->NotifyObservers();
 }
 void Order::HowManyObservers() {
-    std::cout << "There are " << list_observer_.size() << " observers observing the reservation list.\n";
+    std::cout << "There are " << list_observer_.size() << " observers observing the order list.\n";
 }
 
 void Order::AddToOrder(const std::string &aItem)
@@ -106,10 +106,10 @@ void Order::ShowTotalCost() const
     std::cout << "Total: " << TotalCost << "\n";
 }
 
-void Order::GenerateReceipt() const
+void Order::GenerateReceipt(std::string orderType) const
 {
     std::cout << "Checkout requested, generating receipt." << std::endl;
-    Receipt receipt(TotalCost, OrderItems, "Dine-in");
+    Receipt receipt(TotalCost, OrderItems, orderType);//"Dine-in"
     std::cout << "Receipt has been generated!\n";
 }
 

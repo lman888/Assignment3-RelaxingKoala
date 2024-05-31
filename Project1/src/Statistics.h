@@ -24,9 +24,10 @@ public:
 	string deliveryType;
 	float totalAmount;
 
-	void DisplayStatisticsSummaryFile();
 
 	void GetStatisticsFromSummaryFile();
+
+	void DisplayBasicStatistics();
 
 	void UpdateStatisticsFile(Receipt* aReceipt, float totalAmount);
 
@@ -34,7 +35,7 @@ public:
 
 	void RetrieveRecord();
 
-	void DisplayStatistics();
+	void DisplayPastPurchases();
 
 	//overriding the subject interface
 	void AttachObserver(IObserver* observer);

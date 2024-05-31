@@ -1,0 +1,22 @@
+
+--------
+Order Type: Dine-in Time: Fri May 31 14:03:43 2024
+
+--------
+Order Type: Dine-in Time: Fri May 31 14:04:59 2024
+ Item: Apple: Cost: 2
+--------
+Order Type: Dine-in Time: Fri May 31 14:16:58 2024
+ Item: Latte: Cost: 3
+--------
+Order Type: Dine-in Time: Fri May 31 14:18:28 2024
+ Item: Latte: Cost: 3
+--------
+Order Type: Dine-in Time: Fri May 31 14:20:35 2024
+ Item: Long-Black: Cost: 3.5
+--------
+Order Type: Dine-in Time: Fri May 31 14:24:25 2024
+ Item: Banana: Cost: 2.5
+--------
+Order Type: Takeaway Time: Fri May 31 16:02:09 2024
+ Item: Apple: Cost: 2 Item: Banana: Cost: 2.5

@@ -5,14 +5,14 @@ int Waiter::static_number_ = 0;
 
 Waiter::Waiter(Reservation &reservation) : subject_(reservation)
 {
-    subject_.Attach(this);
+    subject_.AttachObserver(this);
     std::cout << "IObserver inherited Waiter num \"" << ++Waiter::static_number_ << "\" instantiated.\n";
     this->number_ = Waiter::static_number_;
 }
 
 Waiter::~Waiter()
 {
-    subject_.Detach(this);
+    subject_.DetachObserver(this);
     std::cout << "Goodbye from Waiter num \"" << this->number_ << "\".\n";
 }
 
@@ -30,7 +30,7 @@ void Waiter::Update(const std::string &message_from_subject)
 
 void Waiter::RemoveMeFromTheList()
 {
-    subject_.Detach(this);
+    subject_.DetachObserver(this);
     std::cout << "Waiter num \"" << number_ << "\" removed from the list.\n";
 }
 
